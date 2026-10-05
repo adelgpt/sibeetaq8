@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أرقام الجنجفة</title>
+<script>document.documentElement.lang="ar";document.documentElement.dir="rtl"</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alkalami&family=Almendra&family=Amiri&family=Anton&family=Aref+Ruqaa&family=Aref+Ruqaa+Ink&family=Audiowide&family=Badeen+Display&family=Bagel+Fat+One&family=Big+Shoulders+Display&family=Black+Ops+One&family=Blaka&family=Blaka+Ink&family=Bodoni+Moda&family=Bungee+Inline&family=Bungee+Shade&family=Bungee+Spice&family=Butcherman&family=Changa&family=Cinzel&family=Cinzel+Decorative&family=Climate+Crisis&family=Codystar&family=Cormorant+Garamond&family=Creepster&family=DM+Serif+Display&family=Dela+Gothic+One&family=Diplomata+SC&family=Eater&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri&family=Fascinate+Inline&family=Faster+One&family=Foldit&family=Fraunces&family=Fredoka&family=GFS+Didot&family=Gloock&family=Handjet&family=Harmattan&family=Honk&family=IBM+Plex+Sans+Arabic&family=Italiana&family=Jacquard+24&family=Jomhuria&family=Kalnia+Glaze&family=Katibeh&family=Kufam&family=Lalezar&family=Lemonada&family=Limelight&family=Londrina+Shadow&family=Ma+Shan+Zheng&family=Major+Mono+Display&family=Marcellus&family=Marhey&family=MedievalSharp&family=Metamorphous&family=Michroma&family=Mirza&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Moirai+One&family=Monoton&family=Moul&family=Nabla&family=Nosifer&family=Noto+Nastaliq+Urdu&family=Noto+Sans+Cuneiform&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Sans+Glagolitic&family=Noto+Sans+Ogham&family=Noto+Sans+Runic&family=Noto+Sans+Symbols+2&family=Noto+Serif+Armenian&family=Noto+Serif+Bengali&family=Noto+Serif+Ethiopic&family=Noto+Serif+SC&family=Noto+Serif+Tamil&family=Noto+Serif+Thai&family=Orbitron&family=Pirata+One&family=Playfair+Display&family=Poiret+One&family=Press+Start+2P&family=Qahiri&family=Rakkas&family=Rampart+One&family=Readex+Pro&family=Reem+Kufi&family=Reem+Kufi+Fun&family=Reem+Kufi+Ink&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Righteous&family=Rubik+Burned&family=Rubik+Gemstones&family=Rubik+Glitch&family=Rubik+Iso&family=Rubik+Maze&family=Rubik+Mono+One&family=Rubik+Moonrocks&family=Rubik+Puddles&family=Rubik+Spray+Paint&family=Rubik+Vinyl&family=Rubik+Wet+Paint&family=Rye&family=Shrikhand&family=Sixtyfour&family=Syne&family=Tilt+Neon&family=Tilt+Prism&family=Tilt+Warp&family=Tiro+Devanagari+Hindi&family=Unbounded&family=Uncial+Antiqua&family=VT323&family=Vazirmatn&family=Wallpoet&family=Zen+Tokyo+Zoo&family=Zhi+Mang+Xing&display=swap">
+
+<style>
+/* layout: a dark card-room catalogue matching سبيتة — category chips, a grid of design tiles each holding a small fan of cards, and a full-suit viewer sheet */
+:root{
+  --night:#0a1a2b; --panel:#0f2238; --panel2:#132b45; --line:rgba(255,255,255,.13);
+  --tx:#f4f7fb; --mu:#9fb4ca; --amber:#ffb432; --amber-ink:#2b1800; --rose:#ff6f73;
+  --f-display:'Lalezar',Tahoma,sans-serif; --f-body:'IBM Plex Sans Arabic',Tahoma,sans-serif;
+  --f-sym:'Noto Sans Symbols 2','Segoe UI Symbol','Apple Symbols',sans-serif;
+  color-scheme:dark;
+}
+html{background:var(--night);overflow-x:clip}
+[hidden]{display:none!important}
+*,*::before,*::after{box-sizing:border-box}
+body{overflow-x:clip;background:var(--night);color:var(--tx);font-family:var(--f-body);font-size:15px;line-height:1.6;padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:1240px;margin:0 auto}
+button{font-family:inherit;color:inherit}
+button:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+
+/* ---------- hero ---------- */
+.top{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding-block:36px 22px}
+.top h1{font:400 clamp(38px,7vw,72px)/1 var(--f-display);margin:0;text-wrap:balance}
+.top h1 span{color:var(--amber)}
+.top p{color:var(--mu);margin:10px 0 0;max-width:60ch}
+.fanhero{direction:ltr;display:flex;align-items:flex-end;padding-inline-end:10px}
+.fanhero .jc{--w:84px;margin-left:-22px;box-shadow:0 14px 28px rgba(0,0,0,.5)}
+.fanhero .jc:nth-child(1){transform:rotate(-14deg) translateY(10px)}
+.fanhero .jc:nth-child(2){transform:rotate(-5deg)}
+.fanhero .jc:nth-child(3){transform:rotate(5deg)}
+.fanhero .jc:nth-child(4){transform:rotate(14deg) translateY(10px)}
+@media (max-width:720px){.top{grid-template-columns:1fr}.fanhero{justify-content:center}.fanhero .jc{--w:70px}}
+
+/* ---------- toolbar ---------- */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(10,26,43,.92);backdrop-filter:blur(8px);padding-block:10px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:999px;padding:6px 14px;font:500 14px var(--f-body);cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chip b{font-weight:700;color:var(--mu);font-variant-numeric:tabular-nums}
+.chip[aria-pressed="true"]{background:var(--amber);color:var(--amber-ink);border-color:var(--amber)}
+.chip[aria-pressed="true"] b{color:var(--amber-ink)}
+.suitpick{margin-inline-start:auto;display:flex;gap:4px}
+.suitpick button{width:36px;height:34px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.04);font:20px var(--f-sym);cursor:pointer}
+.suitpick button.r{color:var(--rose)}
+.suitpick button[aria-pressed="true"]{background:#fff;color:#111}
+.suitpick button.r[aria-pressed="true"]{color:#d8343b}
+@media (max-width:620px){.suitpick{margin-inline-start:0}}
+
+/* ---------- grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(264px,1fr));gap:16px;padding-block:20px}
+.tile{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:10px;cursor:pointer;text-align:start;transition:transform .15s,border-color .15s}
+.tile:hover{transform:translateY(-3px);border-color:rgba(255,180,50,.5)}
+.tile .stage{direction:ltr;height:150px;display:flex;justify-content:center;align-items:center;border-radius:12px;background:radial-gradient(ellipse at 50% 60%,#1b4d7a,#0e2c49 70%);overflow:hidden}
+.tile .stage .jc{--w:80px;margin-inline:-9px;box-shadow:0 8px 16px rgba(0,0,0,.45)}
+.tile .stage .jc:nth-child(1){transform:rotate(-8deg) translateY(6px)}
+.tile .stage .jc:nth-child(2){transform:translateY(-4px)}
+.tile .stage .jc:nth-child(3){transform:rotate(8deg) translateY(6px)}
+.meta{display:flex;gap:10px;align-items:flex-start}
+.no{font:400 22px/1 var(--f-display);color:var(--amber);min-width:36px;font-variant-numeric:tabular-nums}
+.meta h3{margin:0;font:700 16px/1.3 var(--f-body)}
+.meta p{margin:2px 0 0;color:var(--mu);font-size:13px;line-height:1.5}
+.tag{font-size:11px;font-weight:700;letter-spacing:.02em;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--mu);white-space:nowrap}
+.fav{position:absolute;top:20px;inset-inline-start:20px;width:32px;height:32px;border-radius:50%;border:0;background:rgba(5,15,28,.6);cursor:pointer;font-size:16px;line-height:32px;z-index:2;color:#fff}
+.fav[aria-pressed="true"]{background:var(--amber);color:var(--amber-ink)}
+.empty{padding:40px;text-align:center;color:var(--mu)}
+
+/* ---------- sheet ---------- */
+.scrim{position:fixed;inset:0;background:rgba(3,10,18,.7);display:grid;place-items:center;z-index:30;padding:16px}
+.sheet{background:var(--panel);border:1px solid var(--line);border-radius:22px;width:min(100%,980px);max-height:100%;overflow:auto;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.sh-head{display:flex;gap:12px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.sh-head h2{font:400 30px/1.1 var(--f-display);margin:0}
+.sh-head .no{font-size:30px}
+.sh-head .sp{flex:1}
+.ib{border:1px solid var(--line);background:rgba(255,255,255,.05);border-radius:10px;height:36px;min-width:36px;padding:0 12px;cursor:pointer;font:500 14px var(--f-body)}
+.ib.pri{background:var(--amber);color:var(--amber-ink);border-color:var(--amber);font-weight:700}
+.table{background:radial-gradient(ellipse at 50% 40%,#1d5687,#0e2c49 75%);padding:22px 16px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.table .jc{--w:min(104px,22vw);box-shadow:0 8px 18px rgba(0,0,0,.45)}
+.spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line)}
+.spec div{background:var(--panel);padding:12px 18px}
+.spec dt{font-size:12px;color:var(--mu);letter-spacing:.02em}
+.spec dd{margin:2px 0 0;font-weight:700;overflow-wrap:anywhere}
+.sh-foot{padding:12px 18px;color:var(--mu);font-size:13px}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:#fff;color:#111;padding:8px 16px;border-radius:999px;font-weight:700;z-index:40}
+.note{color:var(--mu);font-size:13px;max-width:70ch;padding-block:6px 0}
+
+/* =========================================================
+   CARD ENGINE  — every design = vars + fx / ly / fr classes
+   ========================================================= */
+.jc{--w:84px;--k:var(--ink);position:relative;flex:none;width:var(--w);height:calc(var(--w)*1.45);border-radius:calc(var(--w)*.1);background:var(--bg);color:var(--k);overflow:hidden;isolation:isolate;direction:ltr;user-select:none;
+  font-family:var(--f),'Fredoka','IBM Plex Sans Arabic',sans-serif;box-shadow:0 4px 10px rgba(0,0,0,.4)}
+.jc.r{--k:var(--red)}
+.jc .ix{position:absolute;top:4.5%;left:7%;z-index:4;display:flex;flex-direction:column;align-items:center;line-height:.95;font-size:calc(var(--w)*.19*var(--iz,1));font-family:var(--fi,var(--f)),'Fredoka','IBM Plex Sans Arabic',sans-serif;color:var(--k);white-space:nowrap}
+.jc .ix i{font:normal calc(var(--w)*.16) var(--f-sym);margin-top:calc(var(--w)*.02)}
+.jc .ix2{top:auto;left:auto;right:7%;bottom:4.5%;transform:rotate(180deg)}
+.jc .hero{position:absolute;inset:17% 13%;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--w)*.02)}
+.jc .num{position:relative;display:block;font-size:calc(var(--w)*var(--fs)*var(--fit,1));line-height:1.05;white-space:nowrap;color:var(--k);unicode-bidi:plaintext;z-index:1}
+.jc .st{font:calc(var(--w)*.15)/1 var(--f-sym);color:var(--k);position:relative;z-index:1}
+.jc .bigst,.jc .wm{display:none}
+.jc.jk .ix{font:calc(var(--w)*.17)/1 var(--f-sym)}
+.jc.jk .crown{font:calc(var(--w)*.3)/1 var(--f-sym);color:var(--k);position:relative;z-index:1}
+.jc.jk .num{font-family:var(--f),'Lalezar','IBM Plex Sans Arabic',sans-serif}
+.jc .deco{position:absolute;inset:0;z-index:1;pointer-events:none}
+
+/* drawn numerals */
+.may{display:flex;flex-direction:column;align-items:center;gap:calc(var(--w)*.035)}
+.may .dots{display:flex;gap:calc(var(--w)*.04)}
+.may .d{width:calc(var(--w)*.085);height:calc(var(--w)*.085);border-radius:50%;background:currentColor}
+.may .b{width:calc(var(--w)*.46);height:calc(var(--w)*.075);border-radius:calc(var(--w)*.04);background:currentColor}
+.tal{display:flex;flex-wrap:wrap;justify-content:center;gap:calc(var(--w)*.05);max-width:calc(var(--w)*.7)}
+.tal .g{position:relative;display:flex;gap:calc(var(--w)*.035);padding:0 calc(var(--w)*.01)}
+.tal .l{width:calc(var(--w)*.03);height:calc(var(--w)*.28);background:currentColor;border-radius:9px;transform:rotate(3deg)}
+.tal .g.f::after{content:'';position:absolute;left:-12%;right:-12%;top:46%;height:calc(var(--w)*.03);background:currentColor;border-radius:9px;transform:rotate(-28deg)}
+.dice{display:flex;flex-direction:column;gap:calc(var(--w)*.05);align-items:center}
+.die{--ds:calc(var(--w)*.36);width:var(--ds);height:var(--ds);border:calc(var(--w)*.02) solid currentColor;border-radius:22%;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:7%;box-sizing:border-box}
+.dice.two .die{--ds:calc(var(--w)*.29)}
+.die s{display:block;margin:auto;width:70%;height:70%;border-radius:50%;background:transparent}
+.die s.on{background:currentColor}
+.pips{position:absolute;inset:0}
+.pips span{position:absolute;transform:translate(-50%,-50%);font:calc(var(--w)*.17)/1 var(--f-sym);color:var(--k)}
+.pips span.dn{transform:translate(-50%,-50%) rotate(180deg)}
+.pips.ace span{font-size:calc(var(--w)*.5)}
+
+/* ---------- layouts ---------- */
+.ly-g .hero{inset:auto -10% -14% auto;align-items:flex-end;justify-content:flex-end}
+.ly-g .num{--fit:1!important;font-size:calc(var(--w)*var(--fs)*1.75);line-height:.8}
+.ly-g .st{display:none}
+.ly-t .hero{inset:14% 9% 9% 9%;align-items:flex-end;justify-content:flex-start}
+.ly-t .st{display:none}
+.ly-t .bigst{display:block;position:absolute;left:9%;bottom:8%;z-index:2;font:calc(var(--w)*.42)/1 var(--f-sym);color:var(--k);opacity:.92}
+.ly-d::before{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(140deg,transparent 52%,var(--acc) 52.4%)}
+.ly-s::before{content:'';position:absolute;inset:0 auto 0 0;width:30%;z-index:0;background:var(--acc)}
+.ly-s .hero{inset:16% 8% 16% 34%}
+.ly-s .st{display:none}
+.ly-s .bigst{display:block;position:absolute;left:15%;top:50%;z-index:2;transform:translate(-50%,-50%);font:calc(var(--w)*.2)/1 var(--f-sym);color:var(--p,#fff)}
+.ly-s .ix:not(.ix2){color:var(--p,#fff);left:4%}
+.ly-w .wm{display:block;position:absolute;left:50%;top:52%;z-index:1;transform:translate(-50%,-50%) rotate(-14deg);font-size:calc(var(--w)*var(--fs)*2.1);line-height:1;color:var(--k);opacity:.1;white-space:nowrap}
+.ly-w .hero{inset:20% 16%}
+
+/* ---------- frames & surfaces ---------- */
+.hero::before,.hero::after{content:none;position:absolute;pointer-events:none;z-index:0}
+.fr-ring .hero::before{content:'';width:calc(var(--w)*.68);aspect-ratio:1;border-radius:50%;border:calc(var(--w)*.018) solid var(--acc);box-shadow:inset 0 0 0 calc(var(--w)*.03) transparent,inset 0 0 0 calc(var(--w)*.04) var(--acc)}
+.fr-arch .hero::before{content:'';inset:-4% 2% -2%;border:calc(var(--w)*.018) solid var(--acc);border-radius:50% 50% 6% 6%/34% 34% 4% 4%;background:color-mix(in srgb,var(--acc) 12%,transparent)}
+.fr-hex .hero::before{content:'';width:calc(var(--w)*.7);aspect-ratio:1/1.12;background:var(--acc);opacity:.22;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.fr-dia .hero::before{content:'';width:calc(var(--w)*.5);aspect-ratio:1;border:calc(var(--w)*.018) solid var(--acc);transform:rotate(45deg)}
+.fr-star8 .hero::before,.fr-star8 .hero::after{content:'';width:calc(var(--w)*.5);aspect-ratio:1;background:var(--acc);opacity:.3}
+.fr-star8 .hero::after{transform:rotate(45deg)}
+.fr-shield .hero::before{content:'';width:calc(var(--w)*.66);height:calc(var(--w)*.78);background:var(--acc);opacity:.35;clip-path:polygon(0 0,100% 0,100% 55%,50% 100%,0 55%)}
+.fr-sun .hero::before{content:'';width:calc(var(--w)*1.6);aspect-ratio:1;border-radius:50%;background:repeating-conic-gradient(var(--acc) 0 7deg,transparent 7deg 20deg);-webkit-mask:radial-gradient(circle,transparent 18%,#000 19%,transparent 70%);mask:radial-gradient(circle,transparent 18%,#000 19%,transparent 70%);opacity:.55}
+.fr-disc .hero::before{content:'';width:calc(var(--w)*.62);aspect-ratio:1;border-radius:50%;background:var(--acc);box-shadow:0 0 calc(var(--w)*.15) var(--acc)}
+.fr-seal .hero::before{content:'';width:calc(var(--w)*.66);aspect-ratio:1;border-radius:47% 53% 50% 50%/52% 48% 52% 48%;background:radial-gradient(circle at 38% 32%,color-mix(in srgb,var(--k) 70%,#fff),var(--k) 45%,color-mix(in srgb,var(--k) 70%,#000));box-shadow:0 calc(var(--w)*.02) calc(var(--w)*.04) rgba(0,0,0,.35),inset 0 0 0 calc(var(--w)*.04) color-mix(in srgb,var(--k) 80%,#000)}
+.fr-seal .num{color:var(--acc)!important;-webkit-text-fill-color:var(--acc)}
+.fr-chop .hero::before{content:'';width:calc(var(--w)*.6);aspect-ratio:1;border-radius:10%;background:var(--k);filter:url(#rough)}
+.fr-chop .num{color:var(--acc)!important}
+.fr-rune .hero::before{content:'';width:calc(var(--w)*.74);aspect-ratio:1;border-radius:50%;border:calc(var(--w)*.012) dashed var(--acc);box-shadow:inset 0 0 0 calc(var(--w)*.05) transparent,inset 0 0 0 calc(var(--w)*.058) var(--acc),0 0 calc(var(--w)*.1) var(--acc);animation:spin 24s linear infinite}
+.fr-orbit .hero::before{content:'';width:calc(var(--w)*.95);height:calc(var(--w)*.34);border-radius:50%;border:calc(var(--w)*.012) solid var(--acc);transform:rotate(-24deg)}
+.fr-orbit .hero::after{content:'';width:calc(var(--w)*.07);aspect-ratio:1;border-radius:50%;background:var(--acc);box-shadow:0 0 8px var(--acc);transform:translate(calc(var(--w)*.4),calc(var(--w)*-.17))}
+.fr-gear .hero::before{content:'';width:calc(var(--w)*.8);aspect-ratio:1;border-radius:50%;background:repeating-conic-gradient(var(--acc) 0 10deg,transparent 10deg 20deg);-webkit-mask:radial-gradient(circle,transparent 58%,#000 59% 70%,transparent 71%);mask:radial-gradient(circle,transparent 58%,#000 59% 70%,transparent 71%);animation:spin 40s linear infinite}
+.fr-gear .hero::after{content:'';width:calc(var(--w)*.56);aspect-ratio:1;border-radius:50%;border:calc(var(--w)*.02) solid var(--acc)}
+.fr-hole .hero::before{content:'';width:calc(var(--w)*.95);height:calc(var(--w)*.5);border-radius:50%;background:conic-gradient(from 90deg,#ff7b00,#ffd27a,#fff,#ffb347,#ff3d00,#ff7b00);-webkit-mask:radial-gradient(closest-side,transparent 62%,#000 66%,#000 80%,transparent 100%);mask:radial-gradient(closest-side,transparent 62%,#000 66%,#000 80%,transparent 100%);filter:blur(1.5px);transform:rotate(-12deg);animation:spin 18s linear infinite}
+.fr-cart .hero::before{content:'';inset:-2% 6%;border-radius:999px;border:calc(var(--w)*.016) solid var(--acc);box-shadow:inset 0 0 0 calc(var(--w)*.02) transparent,inset 0 0 0 calc(var(--w)*.03) var(--acc)}
+.fr-mandala .hero::before{content:'';width:calc(var(--w)*.86);aspect-ratio:1;border-radius:50%;background:repeating-conic-gradient(var(--acc) 0 10deg,transparent 10deg 15deg,var(--acc) 15deg 20deg,transparent 20deg 30deg);-webkit-mask:radial-gradient(circle,transparent 46%,#000 47% 52%,transparent 53% 58%,#000 59% 70%,transparent 71%);mask:radial-gradient(circle,transparent 46%,#000 47% 52%,transparent 53% 58%,#000 59% 70%,transparent 71%);opacity:.7}
+.fr-glass .hero::before{content:'';inset:4% 2%;border-radius:calc(var(--w)*.1);background:rgba(255,255,255,.32);border:1px solid rgba(255,255,255,.7);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 6px 18px rgba(30,20,80,.18)}
+.fr-dbl .deco{inset:5%;border:calc(var(--w)*.03) double var(--acc);border-radius:calc(var(--w)*.06)}
+.fr-cor .deco{inset:5%;background:
+  linear-gradient(var(--acc),var(--acc)) top left/22% 2px,linear-gradient(var(--acc),var(--acc)) top left/2px 16%,
+  linear-gradient(var(--acc),var(--acc)) top right/22% 2px,linear-gradient(var(--acc),var(--acc)) top right/2px 16%,
+  linear-gradient(var(--acc),var(--acc)) bottom left/22% 2px,linear-gradient(var(--acc),var(--acc)) bottom left/2px 16%,
+  linear-gradient(var(--acc),var(--acc)) bottom right/22% 2px,linear-gradient(var(--acc),var(--acc)) bottom right/2px 16%;background-repeat:no-repeat}
+.fr-zari .deco{inset:0;border:calc(var(--w)*.06) solid transparent;border-image:repeating-linear-gradient(45deg,var(--acc) 0 3px,#7a5a12 3px 5px,var(--acc) 5px 8px) 12;box-shadow:inset 0 0 0 calc(var(--w)*.01) var(--acc)}
+.fr-grid .deco{background:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px) 0 0/10% 7%,linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px) 0 0/10% 7%}
+.fr-scan .deco{background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 1px,transparent 1px 3px),radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55));z-index:5}
+.fr-mash .deco{background:repeating-linear-gradient(45deg,var(--acc) 0 1.5px,transparent 1.5px 9px),repeating-linear-gradient(-45deg,var(--acc) 0 1.5px,transparent 1.5px 9px),radial-gradient(circle,var(--acc) 0 1.6px,transparent 2px) 0 0/9px 9px;opacity:.45;-webkit-mask:radial-gradient(ellipse 46% 36% at center,transparent 82%,#000 84%);mask:radial-gradient(ellipse 46% 36% at center,transparent 82%,#000 84%)}
+.fr-sadu .deco{background:
+  conic-gradient(from 135deg at 50% 100%,var(--acc) 90deg,transparent 0) 0 0/calc(var(--w)*.12) calc(var(--w)*.07) repeat-x,
+  conic-gradient(from -45deg at 50% 0,var(--acc) 90deg,transparent 0) 0 100%/calc(var(--w)*.12) calc(var(--w)*.07) repeat-x,
+  repeating-linear-gradient(90deg,var(--k) 0 2px,transparent 2px 6px) 0 calc(var(--w)*.08)/100% calc(var(--w)*.025) no-repeat,
+  repeating-linear-gradient(90deg,var(--k) 0 2px,transparent 2px 6px) 0 calc(100% - var(--w)*.08)/100% calc(var(--w)*.025) no-repeat}
+.fr-sadu .ix{top:13%}.fr-sadu .ix2{bottom:13%}
+.fr-wave .deco{background:
+  radial-gradient(circle at 50% 100%,transparent 42%,var(--acc) 44% 56%,transparent 58%) 0 100%/calc(var(--w)*.2) calc(var(--w)*.1) repeat-x,
+  radial-gradient(circle at 50% 100%,transparent 42%,var(--acc) 44% 56%,transparent 58%) calc(var(--w)*.1) calc(100% - var(--w)*.07)/calc(var(--w)*.2) calc(var(--w)*.1) repeat-x;opacity:.75}
+.fr-stars .deco{background:
+  radial-gradient(1.2px 1.2px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 82% 12%,#fff,transparent),radial-gradient(1.4px 1.4px at 70% 30%,var(--acc),transparent),
+  radial-gradient(1px 1px at 22% 72%,#fff,transparent),radial-gradient(1.3px 1.3px at 88% 64%,var(--acc),transparent),radial-gradient(1px 1px at 40% 88%,#fff,transparent),
+  radial-gradient(1px 1px at 58% 8%,#fff,transparent),radial-gradient(1.2px 1.2px at 8% 46%,var(--acc),transparent),radial-gradient(1px 1px at 94% 90%,#fff,transparent);animation:twinkle 3s ease-in-out infinite alternate}
+.fr-tile .deco{inset:4%;border:2px solid var(--acc);border-radius:calc(var(--w)*.05);background:
+  radial-gradient(circle at 0 0,var(--acc) 0 12%,transparent 13%),radial-gradient(circle at 100% 0,var(--acc) 0 12%,transparent 13%),
+  radial-gradient(circle at 0 100%,var(--acc) 0 12%,transparent 13%),radial-gradient(circle at 100% 100%,var(--acc) 0 12%,transparent 13%)}
+.fr-meander .deco{background:
+  repeating-linear-gradient(90deg,var(--acc) 0 3px,transparent 3px 9px,var(--acc) 9px 12px,transparent 12px 12px) 0 6%/100% calc(var(--w)*.05) no-repeat,
+  linear-gradient(var(--acc),var(--acc)) 0 calc(6% - 2px)/100% 2px no-repeat,
+  repeating-linear-gradient(90deg,var(--acc) 0 3px,transparent 3px 9px,var(--acc) 9px 12px,transparent 12px 12px) 0 94%/100% calc(var(--w)*.05) no-repeat,
+  linear-gradient(var(--acc),var(--acc)) 0 calc(94% + 2px)/100% 2px no-repeat}
+.fr-meander .ix{top:13%}.fr-meander .ix2{bottom:13%}
+.fr-dash .deco{inset:6%;border:calc(var(--w)*.014) dashed var(--acc);border-radius:calc(var(--w)*.06)}
+
+/* ---------- numeral effects ---------- */
+.fx-gold .num,.fx-chrome .num,.fx-holo .num,.fx-fire .num,.fx-ice .num,.fx-split .num,.fx-sunset .num,.fx-crystal .num,.fx-lava .num,.fx-pearl .num,.fx-cut .num{-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.fx-gold .num{background-image:linear-gradient(180deg,#fff7cf 0%,var(--acc) 30%,color-mix(in srgb,var(--k) 55%,#5c3a06) 52%,var(--acc) 72%,#fff3b8 100%);filter:drop-shadow(0 1px 0 rgba(0,0,0,.45))}
+.fx-chrome .num{background-image:linear-gradient(180deg,#ffffff 0%,#c9d1da 38%,#2b3038 50%,#8d97a3 64%,#f2f5f8 100%);-webkit-text-stroke:calc(var(--w)*.004) rgba(0,0,0,.5);filter:drop-shadow(0 2px 2px rgba(0,0,0,.4))}
+.fx-holo .num{background-image:linear-gradient(115deg,#ff9ad5,#9ad7ff,#b8ffcf,#fff59a,#d6a6ff,#ff9ad5);background-size:300% 100%;animation:shine 6s linear infinite;filter:drop-shadow(0 0 6px rgba(180,160,255,.5))}
+.fx-fire .num{background-image:linear-gradient(0deg,#7a0000 0%,#ff3d00 30%,#ffae00 62%,#fff6a8 100%);filter:drop-shadow(0 0 6px rgba(255,110,0,.75));animation:flick 2.4s ease-in-out infinite}
+.fx-ice .num{background-image:linear-gradient(170deg,#ffffff 0%,#c9f1ff 35%,#5cb3e6 52%,#e9fbff 70%,#9fdcff 100%);-webkit-text-stroke:calc(var(--w)*.004) rgba(255,255,255,.9);filter:drop-shadow(0 0 5px rgba(120,210,255,.7))}
+.fx-split .num{background-image:linear-gradient(180deg,var(--k) 52%,var(--acc) 52%)}
+.fx-sunset .num{background-image:linear-gradient(180deg,#ffe259 0%,#ff7b54 45%,#ff2975 70%,#8c1eff 100%),repeating-linear-gradient(0deg,transparent 0 3px,#000 3px 4px);filter:drop-shadow(0 0 8px rgba(255,41,117,.6))}
+.fx-crystal .num{background-image:conic-gradient(from 30deg at 40% 45%,#fff,var(--acc),color-mix(in srgb,var(--acc) 40%,#000),#fff,var(--acc),color-mix(in srgb,var(--acc) 60%,#fff),#fff);-webkit-text-stroke:calc(var(--w)*.005) rgba(255,255,255,.75);filter:drop-shadow(0 0 6px var(--acc))}
+.fx-lava .num{background-image:linear-gradient(120deg,#1a0500,#ff4b00,#ffd000,#ff4b00,#1a0500,#ff6a00);background-size:280% 100%;animation:shine 5s linear infinite;filter:drop-shadow(0 0 8px rgba(255,80,0,.8))}
+.fx-pearl .num{background-image:linear-gradient(135deg,#fffaf2 0%,#f6d9e6 25%,#d9ecf8 45%,#fffdf6 60%,#e8dcff 80%,#fff 100%);filter:drop-shadow(0 1px 1px rgba(0,0,0,.35)) drop-shadow(0 0 6px rgba(255,255,255,.4))}
+.fx-cut .num{background-image:var(--pat);-webkit-text-stroke:calc(var(--w)*.006) var(--k)}
+.fx-neon .num,.fx-neon .ix{color:color-mix(in srgb,var(--k) 35%,#fff);text-shadow:0 0 .03em #fff,0 0 .1em var(--k),0 0 .25em var(--k),0 0 .5em var(--k)}
+.fx-neon .num{animation:buzz 5s steps(1) infinite}
+.fx-glow .num{text-shadow:0 0 .08em var(--acc),0 0 .25em var(--acc),0 0 .6em color-mix(in srgb,var(--acc) 60%,transparent)}
+.fx-out .num{color:transparent;-webkit-text-fill-color:transparent;-webkit-text-stroke:calc(var(--w)*.012) var(--k)}
+.fx-outfill .num{color:transparent;-webkit-text-fill-color:transparent;-webkit-text-stroke:calc(var(--w)*.012) var(--k);text-shadow:.07em .07em 0 var(--acc)}
+.fx-ext .num{text-shadow:.01em .01em 0 var(--acc),.02em .02em 0 var(--acc),.03em .03em 0 var(--acc),.04em .04em 0 var(--acc),.05em .05em 0 var(--acc),.06em .06em 0 var(--acc),.07em .07em 0 var(--acc),.09em .09em .06em rgba(0,0,0,.35)}
+.fx-long .num{text-shadow:.02em .02em 0 var(--acc),.04em .04em 0 var(--acc),.06em .06em 0 var(--acc),.08em .08em 0 var(--acc),.1em .1em 0 var(--acc),.12em .12em 0 var(--acc),.14em .14em 0 var(--acc),.16em .16em 0 var(--acc),.18em .18em 0 var(--acc),.2em .2em 0 var(--acc),.22em .22em 0 var(--acc),.24em .24em 0 var(--acc),.26em .26em 0 var(--acc),.28em .28em 0 var(--acc),.3em .3em 0 var(--acc)}
+.fx-shadow3 .num{text-shadow:.05em .05em 0 var(--acc),.1em .1em 0 var(--a2,#111)}
+.fx-pix .num{text-shadow:.08em 0 0 var(--acc),0 .08em 0 var(--acc),.08em .08em 0 var(--acc)}
+.fx-emb .num{text-shadow:-.02em -.02em 0 rgba(255,255,255,.55),.025em .025em .01em rgba(0,0,0,.55)}
+.fx-deb .num{color:color-mix(in srgb,var(--k) 85%,transparent);text-shadow:0 .025em 0 rgba(255,255,255,.45),0 -.015em .01em rgba(0,0,0,.45)}
+.fx-riso .num{color:var(--k);mix-blend-mode:multiply}
+.fx-riso .num::after{content:attr(data-t);position:absolute;left:.06em;top:.04em;color:var(--acc);mix-blend-mode:multiply;z-index:-1}
+.fx-glitch .num::before,.fx-glitch .num::after{content:attr(data-t);position:absolute;inset:0;mix-blend-mode:screen}
+.fx-glitch .num::before{color:#00e5ff;transform:translate(-.04em,0);clip-path:inset(0 0 55% 0);animation:gl1 2.6s steps(1) infinite}
+.fx-glitch .num::after{color:#ff2e88;transform:translate(.04em,0);clip-path:inset(50% 0 0 0);animation:gl2 2.2s steps(1) infinite}
+.fx-smoke .num{text-shadow:0 0 .12em var(--acc),0 -.15em .35em color-mix(in srgb,var(--acc) 60%,transparent);animation:smoke 4s ease-in-out infinite}
+.fx-ghost .num{text-shadow:0 0 .2em var(--acc);animation:ghost 3.5s ease-in-out infinite}
+.fx-bolt .num{text-shadow:0 0 .1em var(--acc),0 0 .3em var(--acc);animation:bolt 4s steps(1) infinite}
+.fx-rough .num,.fx-rough .hero>.may,.fx-rough .hero>.tal{filter:url(#rough)}
+.fx-stamp .num{filter:url(#rough);opacity:.9}
+
+@keyframes spin{to{rotate:360deg}}
+@keyframes shine{to{background-position:300% 0}}
+@keyframes flick{0%,100%{filter:drop-shadow(0 0 6px rgba(255,110,0,.75))}50%{filter:drop-shadow(0 -2px 10px rgba(255,170,0,.95))}}
+@keyframes buzz{0%,100%{opacity:1}92%{opacity:1}93%{opacity:.55}94%{opacity:1}96%{opacity:.7}}
+@keyframes gl1{0%,100%{transform:translate(-.04em,0)}30%{transform:translate(-.08em,.02em)}60%{transform:translate(.02em,-.02em)}}
+@keyframes gl2{0%,100%{transform:translate(.04em,0)}40%{transform:translate(.08em,-.02em)}70%{transform:translate(-.02em,.02em)}}
+@keyframes smoke{50%{text-shadow:0 0 .18em var(--acc),0 -.3em .5em color-mix(in srgb,var(--acc) 40%,transparent)}}
+@keyframes ghost{0%,100%{opacity:.95}45%{opacity:.55;filter:blur(.6px)}55%{opacity:.85}}
+@keyframes bolt{0%,100%{opacity:1}88%{opacity:1}89%{opacity:.3}90%{opacity:1;text-shadow:0 0 .2em #fff,0 0 .6em var(--acc)}92%{opacity:.6}}
+@keyframes twinkle{to{opacity:.55}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head><body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter></svg>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>١٠٠ تصميم <span>لأرقام الجنجفة</span></h1>
+      <p>كل تصميم فيه ١٥ ورقة: من الخال إلى الباش، مع الغلام وميمة، وفوقهم الجيكر والميكر. فيها تصاميم عصرية وفاخرة وخرافية، وأرقام حضارات قديمة، وطابع خليجي. افتح أي تصميم تشوف أوراقه كلها، واضغط النجمة على اللي يعجبك.</p>
+    </div>
+    <div class="fanhero" id="fanhero"></div>
+  </header>
+
+  <nav class="bar" aria-label="تصفية">
+    <div id="chips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+    <div class="suitpick" role="group" aria-label="نوع الورق في المعاينة" id="suitpick"></div>
+  </nav>
+
+  <main class="grid" id="grid"></main>
+  <p class="note">الزوايا تبقى دايمًا مقروءة (A، ٢، ٣… أو الحروف المألوفة) حتى لو كان الرقم الكبير بخط مسماري أو هيروغليفي أو رونـي، عشان اللاعب يتعرف على الورقة بسرعة وهي في يده.</p>
+</div>
+
+<div class="scrim" id="scrim" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title">
+    <div class="sh-head">
+      <span class="no" id="sh-no"></span>
+      <h2 id="sh-title"></h2>
+      <span class="tag" id="sh-tag"></span>
+      <span class="sp"></span>
+      <button class="ib" id="sh-prev" aria-label="التصميم السابق">→</button>
+      <button class="ib" id="sh-next" aria-label="التصميم التالي">←</button>
+      <button class="ib" id="sh-fav">☆ مفضّل</button>
+      <button class="ib pri" id="sh-copy">نسخ الإعداد</button>
+      <button class="ib" id="sh-close" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="table" id="sh-table"></div>
+    <dl class="spec" id="sh-spec" style="margin:0"></dl>
+    <div class="sh-foot" id="sh-desc"></div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* ---------- numeral systems: 13 ranks A,2..10,J,Q,K ---------- */
+const S = {
+  lat:['A','2','3','4','5','6','7','8','9','10','J','Q','K'],
+  ar:['خ','٢','٣','٤','٥','٦','٧','٨','٩','١٠','غ','م','ب'],
+  arf:['خال','٢','٣','٤','٥','٦','٧','٨','٩','١٠','غلام','ميمة','باش'],
+  fa:['۱','۲','۳','۴','۵','۶','۷','۸','۹','۱۰','غلام','ميمة','باش'],
+  arw:['خال','اثنين','ثلاثة','أربعة','خمسة','ستة','سبعة','ثمانية','تسعة','عشرة','غلام','ميمة','باش'],
+  rom:['I','II','III','IV','V','VI','VII','VIII','IX','X','J','Q','K'],
+  rom13:['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII'],
+  abj:['أ','ب','ج','د','هـ','و','ز','ح','ط','ي','ك','ل','م'],
+  grk:['Αʹ','Βʹ','Γʹ','Δʹ','Εʹ','Ϛʹ','Ζʹ','Ηʹ','Θʹ','Ιʹ','ΙΑʹ','ΙΒʹ','ΙΓʹ'],
+  han:['一','二','三','四','五','六','七','八','九','十','侍','后','王'],
+  dev:['१','२','३','४','५','६','७','८','९','१०','११','१२','१३'],
+  tha:['๑','๒','๓','๔','๕','๖','๗','๘','๙','๑๐','๑๑','๑๒','๑๓'],
+  tam:['௧','௨','௩','௪','௫','௬','௭','௮','௯','௰','௰௧','௰௨','௰௩'],
+  eth:['፩','፪','፫','፬','፭','፮','፯','፰','፱','፲','፲፩','፲፪','፲፫'],
+  run:['ᚠ','ᚢ','ᚦ','ᚨ','ᚱ','ᚲ','ᚷ','ᚹ','ᚺ','ᚾ','ᛁ','ᛃ','ᛇ'],
+  egy:['𓏺','𓏻','𓏼','𓏽','𓏾','𓏿','𓐀','𓐁','𓐂','𓎆','𓎆𓏺','𓎆𓏻','𓎆𓏼'],
+  cun:['𒁹','𒈫','𒐈','𒐉','𒐊','𒐋','𒐌','𒐍','𒐎','𒌋','𒌋𒁹','𒌋𒈫','𒌋𒐈'],
+  arm:['Ա','Բ','Գ','Դ','Ե','Զ','Է','Ը','Թ','Ժ','ԺԱ','ԺԲ','ԺԳ'],
+  bng:['১','২','৩','৪','৫','৬','৭','৮','৯','১০','১১','১২','১৩'],
+  khm:['១','២','៣','៤','៥','៦','៧','៨','៩','១០','១១','១២','១៣'],
+  glg:['Ⰰ','Ⰱ','Ⰲ','Ⰳ','Ⰴ','Ⰵ','Ⰶ','Ⰷ','Ⰸ','Ⰹ','Ⰺ','Ⰻ','Ⰼ'],
+  ogm:['ᚁ','ᚂ','ᚃ','ᚄ','ᚅ','ᚆ','ᚇ','ᚈ','ᚉ','ᚊ','ᚋ','ᚌ','ᚍ'],
+  bin:['0001','0010','0011','0100','0101','0110','0111','1000','1001','1010','1011','1100','1101'],
+  hex:['0x1','0x2','0x3','0x4','0x5','0x6','0x7','0x8','0x9','0xA','0xB','0xC','0xD'],
+  brl:['⠼⠁','⠼⠃','⠼⠉','⠼⠙','⠼⠑','⠼⠋','⠼⠛','⠼⠓','⠼⠊','⠼⠁⠚','⠼⠁⠁','⠼⠁⠃','⠼⠁⠉'],
+  math:['0!','√4','⌊π⌋','2²','√25','3!','∛343','2³','3²','2·5','J','Q','K'],
+  eng:['ACE','TWO','THREE','FOUR','FIVE','SIX','SEVEN','EIGHT','NINE','TEN','JACK','QUEEN','KING'],
+  circ:['❶','❷','❸','❹','❺','❻','❼','❽','❾','❿','J','Q','K'],
+  may:'draw', tal:'draw', dice:'draw', pip:'draw'
+};
+const SYSNAME = {lat:'لاتيني كلاسيكي',ar:'أرقام عربية مشرقية',arf:'عربية مع خال وغلام وميمة وباش',fa:'أرقام فارسية',arw:'كلمات عربية',rom:'روماني',rom13:'روماني كامل',abj:'حساب الجُمَّل (أبجد)',grk:'إغريقي قديم',han:'صيني',dev:'ديفاناغاري',tha:'تايلندي',tam:'تاميلي',eth:'جعزي حبشي',run:'رونية إسكندنافية',egy:'هيروغليفي',cun:'مسماري بابلي',arm:'أرمني',bng:'بنغالي',khm:'خميري',glg:'غلاغوليتي',ogm:'أوغامي سلتي',bin:'ثنائي',hex:'ست عشري',brl:'برايل',math:'معادلات رياضية',eng:'كلمات إنجليزية',circ:'دوائر سالبة',may:'نقاط وأشرطة المايا',tal:'عدّ بالخطوط',dice:'وجوه النرد',pip:'رسوم الأشكال'};
+const SCALE = {han:.8,egy:.8,cun:.7,brl:1.15,arw:1.3,arf:1.15,fa:1.1,ar:1.1,eth:.9,eng:1.05,khm:.9,tam:.85};
+const JOKERS = [{w:'جيكر',g:'♛',c:'★',n:'الجيكر'},{w:'ميكر',g:'♚',c:'☆',n:'الميكر'}];
+const SUITS = [{s:'♠',r:0,n:'سبيت'},{s:'♥',r:1,n:'هاص'},{s:'♦',r:1,n:'ديمن'},{s:'♣',r:0,n:'شريها'}];
+const CATS = {m:'عصري',x:'فاخر حصري',k:'خرافي',h:'أرقام الحضارات',g:'تراثي خليجي'};
+const FXNAME={flat:'لون صافي',gold:'ذهب مصقول',chrome:'كروم',holo:'هولوغرام متحرك',fire:'لهب',ice:'جليد',split:'نصفين',sunset:'غروب ريترو',crystal:'كريستال',lava:'حمم متحركة',pearl:'لؤلؤي',cut:'نقش مفرّغ',neon:'نيون',glow:'توهج',out:'محيط فقط',outfill:'محيط وظل',ext:'بروز ثلاثي الأبعاد',long:'ظل طويل',shadow3:'ظل مزدوج',pix:'بكسل',emb:'نافر',deb:'محفور',riso:'طباعة ريزو',glitch:'غليتش',smoke:'دخان',ghost:'شبحي',bolt:'برق',rough:'حبر خشن',stamp:'ختم',native:'خط ملوّن أصلي'};
+
+/* ---------- surfaces ---------- */
+const MARBLE='linear-gradient(118deg,transparent 38%,rgba(110,110,125,.28) 39%,transparent 41.5%),linear-gradient(64deg,transparent 58%,rgba(110,110,125,.2) 59%,transparent 61%),linear-gradient(150deg,transparent 70%,rgba(150,140,130,.22) 71%,transparent 72.5%),linear-gradient(165deg,#fdfdfb,#e6e4df)';
+const PAPER='radial-gradient(circle at 30% 20%,rgba(255,255,255,.7),transparent 60%),linear-gradient(170deg,#fbf6ea,#eadfc6)';
+const NIGHT='radial-gradient(ellipse at 50% 30%,#1b2440,#070a14 75%)';
+
+/* [name, cat, numerals, corner, font, fx, layout, frame, background, ink, red, accent, mood, extra] */
+const D = [
+/* ===== عصري ===== */
+['نيون الرياض','m','lat','lat','Tilt Neon','neon','c','0','radial-gradient(ellipse at 50% 40%,#1a0b2e,#07030f 75%)','#2ff3ff','#ff3fa4','#7a2cff','أنابيب نيون تتوهج على جدار ليلي',{}],
+['زجاج متجمّد','m','lat','lat','Unbounded','flat','c','glass','radial-gradient(circle at 20% 20%,#ffb6d9,transparent 45%),radial-gradient(circle at 85% 75%,#8fd3ff,transparent 50%),radial-gradient(circle at 70% 15%,#c9b6ff,transparent 45%),#f4f1ff','#1d2340','#e0245e','#fff','لوح زجاج مصنفر فوق ألوان باستيل',{z:.85}],
+['هولوغرام','m','lat','lat','Syne','holo','g','0','linear-gradient(160deg,#16161f,#07070b)','#e9e9ff','#ffd0ea','#9ad7ff','رقم ضخم بألوان قوس قزح يتحرك مع الضوء',{}],
+['كروم ٢٠٨٠','m','lat','lat','Michroma','chrome','c','dia','linear-gradient(165deg,#2b313a,#0d1015)','#dfe6ee','#ff8a8a','#7f8c99','معدن مرآوي بخطوط مستقبلية',{z:.8}],
+['غليتش','m','lat','lat','Rubik Glitch','glitch','c','scan','#0d0f12','#eaf2ff','#ff3355','#00e5ff','إشارة مشوشة وارتجاف رقمي',{}],
+['سينث ويف','m','lat','lat','Monoton','sunset','c','sun','linear-gradient(180deg,#14002b 0%,#2d0a4e 55%,#ff2975 56%,#1a0033 57%)','#ffd319','#ff2975','#ff2975','غروب ثمانيني فوق شبكة نيون',{z:.85}],
+['ميامي','m','lat','lat','Righteous','shadow3','d','0','#fff3e8','#00a6a6','#ff4f79','#ffb3c6','وردي وفيروزي ونسيم بحر',{a2:'#00a6a6'}],
+['بروتاليزم','m','lat','lat','Anton','flat','g','cor','#e8e4da','#121212','#ff3b00','#121212','رقم عملاق مقصوص بلا مجاملة',{}],
+['سويسري','m','lat','lat','Dela Gothic One','flat','s','0','#ffffff','#111111','#e30613','#e30613','شبكة سويسرية وشريط أحمر',{p:'#fff',z:.85}],
+['مخطط هندسي','m','lat','lat','Major Mono Display','out','c','grid','linear-gradient(170deg,#1456a0,#0c3a70)','#eaf3ff','#ffd5d5','#9cc8ff','خطوط مهندس على ورق أزرق',{}],
+['بكسل ٨-بت','m','lat','lat','Press Start 2P','pix','c','scan','#1b1f3b','#7cf29b','#ff6b8b','#2c7a4b','أرقام أتاري من زمن الأشرطة',{z:.75}],
+['ترمينال','m','bin','lat','VT323','glow','c','scan','#020a04','#33ff66','#ffb000','#1fbf4a','شاشة خضراء تكتب بالثنائي',{}],
+['ست عشري','m','hex','lat','Sixtyfour','neon','c','grid','#05070d','#35d0ff','#ff5ad1','#0b3a55','كود مبرمجين بلون السيان',{z:.8}],
+['ريزو','m','lat','lat','Bagel Fat One','riso','c','0','#f6f1e7','#2a5bd7','#ff4f81','#ffd23f','طباعة ريزوغراف بألوان منزاحة',{}],
+['إيزومتري','m','lat','lat','Rubik Iso','ext','c','hex','#eef2ff','#3047ff','#ff3d6e','#141a5c','مجسم بزاوية هندسية',{}],
+['قصّ ورق','m','lat','lat','Tilt Warp','long','c','ring','#ffcf4a','#1a1a1a','#d7263d','rgba(0,0,0,.18)','ظل طويل كأنه مقصوص من كرتون',{}],
+['جرافيتي','m','lat','lat','Rubik Spray Paint','glow','d','0','radial-gradient(circle at 70% 30%,#3a3a3a,#1e1e1e)','#ffe600','#ff2d7a','#3d3d3d','بخاخ على جدار خرساني',{}],
+['ثنائي اللون','m','lat','lat','Unbounded','split','c','0','#101820','#fee715','#ff5e5b','#00c2a8','رقم مقسوم بلونين متضادين',{z:.85}],
+['غلاف مجلة','m','lat','lat','Abril Fatface','flat','t','dbl','#ffffff','#0d1b2a','#c1121f','#0d1b2a','رقم ضخم في الزاوية بأسلوب الأغلفة',{}],
+['كوفي نيون','m','ar','ar','Kufam','ext','d','0','#0e2a47','#ffd166','#ff6b6b','#071526','كوفي حديث بزوايا حادة وبروز',{p:'#ffd166'}],
+['فارسي مفرّغ','m','fa','fa','Vazirmatn','outfill','c','0','#f0f4ff','#222b55','#d62e4c','#ffd166','أرقام فارسية بمحيط وظل مزاح',{}],
+['حكي الشارع','m','arw','ar','Marhey','flat','c','dash','#fff1e0','#2b2d42','#ef233c','#2b2d42','الرقم مكتوب بالكلام وبخط مرح',{}],
+['ثلاثي الأبعاد','m','lat','lat','Nabla','native','c','0','linear-gradient(160deg,#1c1c3a,#0b0b1e)','#fff','#fff','#fff','خط ملوّن مجسّم من مكعبات',{}],
+
+/* ===== فاخر حصري ===== */
+['ذهب عيار ٢٤','x','lat','lat','Cinzel Decorative','gold','c','dbl','radial-gradient(ellipse at 50% 30%,#2a2214,#0b0906 80%)','#d4af37','#e07a5f','#e9c46a','ذهب مصقول على أسود فاحم',{}],
+['الملكي الأسود','x','lat','lat','Playfair Display','gold','c','star8','radial-gradient(circle at 50% 45%,#1b1b1b,#000 80%)','#d4af37','#c96b5b','#b8902f','نجمة ثمانية ذهبية خلف الرقم',{}],
+['رخام كرارا','x','lat','lat','Cormorant Garamond','flat','c','dbl','MARBLE','#1f2328','#8c1c13','#b8a88a','عروق رخام إيطالي وخط كلاسيكي',{z:1.1}],
+['زمرد','x','lat','lat','Italiana','crystal','c','dia','radial-gradient(circle at 50% 40%,#0b4a37,#03170f 80%)','#bff5dc','#ffd1d1','#1fbf83','حجر أخضر بأوجه مقطوعة',{}],
+['ياقوت أزرق','x','lat','lat','Gloock','crystal','c','hex','radial-gradient(circle at 50% 40%,#10287a,#040a24 80%)','#dbe6ff','#ffc1cf','#3d6dff','زرقة الياقوت ولمعة الماس',{}],
+['آرت ديكو','x','lat','lat','Limelight','gold','c','sun','linear-gradient(180deg,#10262b,#071417)','#e9c46a','#f2a07b','#c9a227','أشعة مروحية من عشرينات نيويورك',{}],
+['ختم الشمع','x','lat','lat','DM Serif Display','flat','c','seal','PAPER','#9d1c24','#9d1c24','#fbe9c6','ختم شمع أحمر على رسالة ملكية',{}],
+['عاج وذهب','x','lat','lat','Cinzel','gold','c','cor','linear-gradient(165deg,#fffaf0,#efe4cc)','#5c4413','#8c2f1c','#c9a227','عاج ناعم بزوايا ذهبية',{}],
+['مخمل أحمر','x','lat','lat','Abril Fatface','emb','c','dbl','radial-gradient(circle at 50% 35%,#6e0f1d,#2a0309 80%)','#f3d9a4','#ffd9c2','#d9b26a','مخمل قرمزي ورقم نافر',{}],
+['مونوغرام','x','rom','rom','Fraunces','gold','c','ring','repeating-linear-gradient(45deg,rgba(201,162,39,.12) 0 2px,transparent 2px 14px),repeating-linear-gradient(-45deg,rgba(201,162,39,.12) 0 2px,transparent 2px 14px),#3b2716','#e9c46a','#f4a78b','#c9a227','نقشة معيّنات بنية وأرقام رومانية',{}],
+['حبر الليل','x','lat','lat','Gloock','flat','w','0','#0b0b0c','#f5f5f5','#ff5a4e','#fff','رقم ظاهر ورقم ظل عملاق خلفه',{}],
+['خزف أزرق','x','lat','lat','Fraunces','flat','c','tile','#fbfdff','#1d3f8f','#c23b4e','#1d3f8f','بلاط خزفي أبيض وأزرق',{}],
+['عقيق يماني','x','ar','ar','Reem Kufi','crystal','c','star8','radial-gradient(circle at 50% 40%,#5a1505,#1c0601 80%)','#ffd8c2','#ffd8c2','#e2552b','لون العقيق الأحمر بكوفي هادئ',{}],
+['تيتانيوم','x','lat','lat','Orbitron','chrome','c','hex','repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px 3px),linear-gradient(165deg,#9aa3ad,#5d656e)','#222','#8b0000','#2a2f36','معدن مصقول بخدوش دقيقة',{z:.85}],
+['أوبرا','x','lat','lat','Diplomata SC','gold','c','arch','radial-gradient(ellipse at 50% 20%,#7a1020,#2a040b 80%)','#e9c46a','#ffcf9e','#c9a227','ستارة مسرح ومقصورة ذهبية',{z:.75}],
+['الختم الذهبي','x','arf','ar','Aref Ruqaa Ink','native','c','star8','radial-gradient(circle at 50% 40%,#1f1b14,#080706 80%)','#d4af37','#d4af37','#5c4a1c','رقعة ذهبية ملوّنة داخل نجمة',{}],
+['الثلث الذهبي','x','arw','ar','Amiri','gold','c','arch','linear-gradient(170deg,#0f2a40,#06131f)','#e9c46a','#f0b38e','#c9a227','كلمات بخط نسخي داخل محراب',{}],
+
+/* ===== خرافي ===== */
+['نار التنين','k','lat','lat','Pirata One','fire','c','shield','radial-gradient(circle at 50% 0,rgba(0,0,0,.25) 30%,transparent 31%) 0 0/12px 9px,radial-gradient(ellipse at 50% 60%,#5a0b04,#1a0200 80%)','#ffb000','#ffb000','#6e0b02','قشور تنين ونار تخرج من الرقم',{}],
+['العنقاء','k','lat','lat','Cinzel Decorative','fire','c','sun','radial-gradient(circle at 50% 55%,#3a0d00,#0a0200 75%)','#ffb000','#ffb000','#ff6a00','طائر من رماد ولهب',{}],
+['جني المصباح','k','ar','ar','Aref Ruqaa','smoke','c','arch','radial-gradient(ellipse at 50% 70%,#2a145c,#0b0619 75%)','#e7dcff','#ffd0f0','#8a5cff','دخان بنفسجي يطلع من المصباح',{}],
+['طائر الرخ','k','abj','ar','Reem Kufi','gold','c','star8','linear-gradient(180deg,#0c1430 0%,#2a1b3d 60%,#a8642a 100%)','#f6d27a','#ffb38a','#f6d27a','أبجدية قديمة من قصص السندباد',{}],
+['كراكن الأعماق','k','lat','lat','Creepster','glow','c','wave','linear-gradient(180deg,#05324a,#010b14)','#7ff9e8','#ff8fa3','#0f8f8a','وحش يطلع من قاع البحر',{}],
+['ميدوسا','k','grk','lat','GFS Didot','emb','c','ring','MARBLE','#3f5b3a','#7e2d2d','#6c8a5a','نظرة تحوّل الرقم حجر',{fi:'Cinzel'}],
+['أوليمبوس','k','grk','lat','GFS Didot','gold','c','dbl','linear-gradient(180deg,#e9f1ff,#ffffff 60%,#f4efe4)','#0b2a5b','#8e1b1b','#c9a227','أرقام إغريقية من جبل الآلهة',{fi:'Cinzel'}],
+['أسغارد','k','run','lat','Noto Sans Runic','glow','c','rune','radial-gradient(circle at 50% 45%,#13243f,#050a14 80%)','#bfe9ff','#ffc2b8','#4fb8ff','رونيات تحرسها دائرة دوّارة',{fi:'Cinzel'}],
+['مطرقة البرق','k','rom','rom','Metamorphous','bolt','c','0','radial-gradient(ellipse at 50% 20%,#2f3a55,#090c14 80%)','#e6f4ff','#ffd2e0','#6fc3ff','رقم يومض مع كل صاعقة',{}],
+['كتاب التعاويذ','k','lat','lat','Uncial Antiqua','glow','c','rune','radial-gradient(circle at 50% 45%,#1d0f33,#07030f 80%)','#e9d8ff','#ffc2e0','#b06cff','دائرة سحرية بنفسجية',{}],
+['مصاص الدماء','k','lat','lat','Nosifer','flat','c','0','radial-gradient(ellipse at 50% 30%,#2a0408,#0b0204 80%)','#efe6d6','#c1001f','#c1001f','رقم يقطر عند منتصف الليل',{z:.8}],
+['الأشباح','k','lat','lat','Eater','ghost','c','0','radial-gradient(ellipse at 50% 70%,#1d2b24,#070c0a 80%)','#d8ffe8','#ffd2d2','#7dffb8','رقم يظهر ويختفي في الضباب',{}],
+['الغابة المسحورة','k','lat','lat','MedievalSharp','glow','c','stars','radial-gradient(ellipse at 50% 100%,#1f4d23,#06140a 80%)','#e3ffc4','#ffc4e3','#b9ff6a','يراعات مضيئة بين الأشجار',{}],
+['ملكة الجليد','k','lat','lat','Tilt Prism','ice','c','star8','linear-gradient(170deg,#dff4ff,#9fd2f2)','#0b4f7a','#7a1f5c','#ffffff','بلورات ثلج وزرقة باردة',{}],
+['الحمم','k','lat','lat','Rubik Burned','lava','g','0','radial-gradient(ellipse at 70% 80%,#3a0b00,#0b0200 70%)','#ff7b00','#ff7b00','#ff3d00','صخور منصهرة تتحرك داخل الرقم',{}],
+['الكيميائي','k','math','lat','Almendra','gold','c','ring','radial-gradient(circle at 50% 40%,#3b2a17,#140d06 80%)','#e9c46a','#f4a78b','#a07b2c','كل رقم معادلة على مخطوطة قديمة',{}],
+['ستيم بانك','k','rom','rom','Rye','gold','c','gear','radial-gradient(circle at 50% 40%,#3d2a16,#160d05 80%)','#e3b04b','#f08a5d','#b07a2a','تروس نحاسية تدور حول الرقم',{}],
+['مجرّة','k','lat','lat','Audiowide','glow','c','orbit','radial-gradient(circle at 30% 30%,rgba(140,60,255,.45),transparent 50%),radial-gradient(circle at 75% 70%,rgba(0,170,255,.35),transparent 50%),#03030c','#ffffff','#ffc6e6','#9a7bff','سديم وكوكب في مداره',{}],
+['الثقب الأسود','k','lat','lat','Moirai One','flat','c','hole','#000000','#ffffff','#ffb38a','#ffb347','قرص ضوء يدور حول الرقم',{}],
+['فضائيون','k','glg','lat','Noto Sans Glagolitic','neon','c','scan','#020d06','#39ff8a','#ff6af0','#0a4','أبجدية غريبة من كوكب ثاني',{fi:'Orbitron',iz:.8}],
+['الدرويد','k','ogm','lat','Noto Sans Ogham','emb','c','0','radial-gradient(circle at 40% 30%,#7d8a6a,#3f4a35 80%)','#e8f0d6','#ffd2b8','#556b3a','خطوط أوغام محفورة على حجر',{fi:'Uncial Antiqua'}],
+['ساموراي النيون','k','han','lat','Zhi Mang Xing','flat','c','disc','#0a0a12','#ffffff','#ffffff','#ff2e6a','ضربة فرشاة على شمس نيون',{fi:'Michroma',iz:.8}],
+['التنين الصيني','k','han','lat','Ma Shan Zheng','gold','c','ring','radial-gradient(circle at 50% 40%,#b51414,#5c0606 80%)','#ffd76a','#ffd76a','#ffd76a','ورنيش أحمر وفرشاة ذهبية',{fi:'Cinzel'}],
+['أطلانتس','k','lat','lat','Marcellus','glow','c','wave','linear-gradient(180deg,#0a4b5a,#021a22)','#d6fffb','#ffd6e0','#3ff2e0','مدينة غارقة ينيرها البحر',{}],
+['سندباد','k','abj','ar','Rakkas','shadow3','c','wave','linear-gradient(180deg,#f7e9c6 0%,#f2d9a0 60%,#2a7da1 61%,#0e4a66 100%)','#1b3a57','#a8321b','#e8a33d','أبجد على شراع فوق موج',{a2:'#1b3a57'}],
+['بساط الريح','k','ar','ar','Lalezar','gold','c','dbl','repeating-linear-gradient(45deg,#4a0f1a 0 8px,#2b1a5c 8px 16px),#2b1a5c','#ffd36b','#ffb38a','#e9b44c','نقوش سجادة طايرة',{}],
+
+/* ===== أرقام الحضارات ===== */
+['الفراعنة','h','egy','lat','Noto Sans Egyptian Hieroglyphs','gold','c','cart','linear-gradient(170deg,#163a9c,#0a1d5a)','#f4d06f','#f4d06f','#e2b847','هيروغليف داخل خرطوشة ملكية',{fi:'Cinzel'}],
+['بابل','h','cun','lat','Noto Sans Cuneiform','deb','c','0','radial-gradient(circle at 40% 30%,#d9a679,#b07a4f 80%)','#4a2a17','#6e1d10','#000','أرقام مسمارية مضغوطة على طين',{fi:'Cinzel'}],
+['المايا','h','may','lat','Rubik Mono One','emb','c','dbl','radial-gradient(circle at 40% 30%,#2f7a5c,#0f3b2b 80%)','#e8f3d6','#ffcf9e','#bfe3a0','نقاط وأشرطة على حجر اليشم',{iz:.8}],
+['روما','h','rom13','rom','Cinzel','deb','c','arch','MARBLE','#3b3b3b','#7c1d1d','#9a9a9a','أرقام محفورة على عمود روماني',{}],
+['إسبرطة','h','grk','lat','GFS Didot','flat','c','meander','#c4622d','#141414','#f3e2c7','#141414','فخار إغريقي بالأسود والأحمر',{fi:'Cinzel'}],
+['الفايكنغ','h','run','lat','Noto Sans Runic','emb','c','shield','repeating-linear-gradient(92deg,rgba(0,0,0,.18) 0 2px,transparent 2px 7px),linear-gradient(170deg,#7a4e28,#4a2c12)','#f0d9a8','#ffb38a','#2a1808','رونيات محفورة على درع خشبي',{fi:'Cinzel'}],
+['الحبشة','h','eth','lat','Noto Serif Ethiopic','gold','c','dbl','repeating-linear-gradient(45deg,rgba(255,215,106,.08) 0 2px,transparent 2px 10px),linear-gradient(170deg,#0f3b2e,#06201a)','#ffd76a','#ffb38a','#d9a830','أرقام جعزية من المخطوطات',{fi:'Cinzel'}],
+['البتراء','h','abj','ar','Reem Kufi','deb','c','arch','linear-gradient(170deg,#d98b70,#a8553f)','#4a1d12','#fff0e0','#fff0e0','حروف أبجد محفورة بالصخر الوردي',{}],
+['الهند','h','dev','lat','Tiro Devanagari Hindi','gold','c','mandala','radial-gradient(circle at 50% 45%,#7a1a2e,#3a0812 80%)','#ffcf5a','#ffb38a','#ff9933','ديفاناغاري وماندالا زعفرانية',{fi:'Cinzel'}],
+['سيام','h','tha','lat','Noto Serif Thai','gold','c','arch','radial-gradient(circle at 50% 40%,#4a1670,#1e0630 80%)','#ffd76a','#ffc0a0','#d9a830','أرقام تايلندية تحت قبة معبد',{fi:'Cinzel'}],
+['أنغكور','h','khm','lat','Moul','deb','c','dbl','radial-gradient(circle at 40% 30%,#8c9a86,#55624f 80%)','#22301d','#6e1d10','#2e3a28','أرقام خميرية على حجر المعابد',{fi:'Cinzel'}],
+['كولام تاميل','h','tam','lat','Noto Serif Tamil','flat','c','0','radial-gradient(circle,rgba(255,255,255,.35) 1.2px,transparent 1.6px) 0 0/10px 10px,#f2b134','#5a1a00','#b3001b','#fff','نقاط الكولام على لون الكركم',{}],
+['أرمينيا','h','arm','lat','Noto Serif Armenian','gold','c','ring','radial-gradient(circle at 50% 40%,#7a1024,#300410 80%)','#ffd2a6','#ffd2a6','#e3a35a','حروف أرمنية بلون الرمان',{fi:'Cinzel'}],
+['ختم الإمبراطور','h','han','lat','Noto Serif SC','flat','c','chop','PAPER','#b3121b','#b3121b','#fff3e0','رقم صيني داخل ختم أحمر',{fi:'Cinzel'}],
+['الكهف','h','tal','lat','Rubik Moonrocks','rough','c','0','radial-gradient(circle at 30% 30%,#a8835f,#6e4f35 80%)','#3a1b0c','#8f2412','#000','خطوط عدّ مرسومة على جدار كهف',{iz:.8}],
+['النرد','h','dice','lat','Fredoka','flat','c','0','linear-gradient(165deg,#ffffff,#eceff3)','#16181d','#d8343b','#000','الرقم بعدد نقاط النرد',{}],
+['برايل','h','brl','lat','Noto Sans Symbols 2','emb','c','0','linear-gradient(165deg,#f4f1ea,#e2ddd1)','#3a3a3a','#8c2f2f','#000','نقاط بارزة تُقرأ باللمس',{fi:'Fredoka'}],
+
+/* ===== تراثي خليجي ===== */
+['السدو','g','ar','ar','Lalezar','flat','c','sadu','#7a1d1d','#fff3dc','#ffcf6b','#141414','نسيج السدو البدوي بمثلثاته',{}],
+['لؤلؤ الخليج','g','ar','ar','El Messiri','pearl','c','wave','linear-gradient(180deg,#0b3954,#062033)','#ffffff','#ffffff','#7fd1e8','لمعة لؤلؤ من رحلة الغوص',{}],
+['المشربية','g','ar','ar','Reem Kufi','emb','c','mash','linear-gradient(170deg,#7a4a22,#4e2c10)','#f6e3b4','#ffbf8a','#2a1606','رقم خلف شبابيك خشب منقوشة',{}],
+['دلّة وفنجال','g','arw','ar','Aref Ruqaa','gold','c','ring','radial-gradient(circle at 50% 40%,#4a2c1a,#1f110a 80%)','#e9c46a','#ffbf8a','#7fa35b','لون القهوة وحبة الهيل',{}],
+['البشت','g','ar','ar','Amiri','gold','c','zari','#0b0b0b','#e9c46a','#f2b38e','#c9a227','أسود البشت وزري ذهبي على الحواف',{}],
+['ليل الصحراء','g','ar','ar','Blaka','glow','c','stars','radial-gradient(ellipse 120% 40% at 30% 100%,#c97b3d 40%,transparent 41%),radial-gradient(ellipse 120% 40% at 90% 105%,#a35d2a 40%,transparent 41%),linear-gradient(180deg,#0a1030,#2a1f4a)','#ffe7b0','#ffb08a','#ffcf7a','كثبان ونجوم وسكون',{}],
+['النخلة','g','abj','ar','Mirza','flat','c','arch','linear-gradient(170deg,#1e5530,#0d2a16)','#f7e7b4','#ffb38a','#c9a227','أبجد بلون السعف والرطب',{}],
+['الفانوس','g','ar','ar','Reem Kufi Fun','glow','c','arch','radial-gradient(circle at 50% 45%,#22305e,#080e22 80%)','#ffe0a0','#ffc0a0','#ffb432','ضوء فانوس رمضاني دافي',{}],
+['بيت الطين','g','ar','ar','Badeen Display','deb','c','0','radial-gradient(circle at 30% 30%,#d6a26b,#a8733f 80%)','#4a2a10','#7a1f10','#000','أرقام محفورة على جدار طين',{}],
+['الحنّاء','g','ar','ar','Alkalami','flat','c','mandala','#f6dcc4','#7a3412','#a02818','#b25a2a','نقش حنّاء حول الرقم',{}],
+['الخوص','g','ar','ar','Changa','flat','c','0','repeating-linear-gradient(45deg,rgba(120,80,30,.28) 0 6px,transparent 6px 12px),repeating-linear-gradient(-45deg,rgba(120,80,30,.22) 0 6px,transparent 6px 12px),#e8c88a','#3d2410','#9b2b13','#000','سفّة خوص مجدولة باليد',{}],
+['العرضة','g','arf','ar','Jomhuria','ext','c','0','linear-gradient(170deg,#0e5a3a,#06301e)','#ffffff','#ffd1d1','#04170e','حروف طويلة كأنها سيوف مرفوعة',{z:1.35}],
+['النستعليق','g','arw','ar','Noto Nastaliq Urdu','flat','c','dbl','PAPER','#1b2a41','#9b1c1c','#b08a3e','الأرقام بالكلام وبخط مائل رشيق',{z:.8}],
+['الحساب القديم','g','abj','ar','Qahiri','flat','s','0','#f3ead6','#2a1d10','#9b1c1c','#2a1d10','حروف أبجد بخط كوفي قاهري',{p:'#f3ead6'}],
+['المجلس','g','arf','ar','Kufam','flat','t','sadu','#f6efe2','#7a1d1d','#7a1d1d','#d4a24a','جلسة سدو بألوان دافئة',{}],
+['العود والبخور','g','ar','ar','Harmattan','smoke','c','0','radial-gradient(ellipse at 50% 80%,#3a1830,#120610 80%)','#ffe6f2','#ffd0c0','#d27aa8','دخان بخور يتمايل حول الرقم',{}],
+['الجنجفة الأصلية','g','arf','ar','El Messiri','flat','t','0','linear-gradient(170deg,#ffffff,#f3efe6)','#16181d','#d8343b','#000','ورق نظيف بالأسماء الكويتية: خال، غلام، ميمة، باش',{}]
+];
+
+const DESIGNS = D.map((d,i)=>({id:i+1,name:d[0],cat:d[1],sys:d[2],ix:d[3],font:d[4],fx:d[5],ly:d[6],fr:d[7],bg:(d[8]==='MARBLE'?MARBLE:d[8]==='PAPER'?PAPER:d[8]),ink:d[9],red:d[10],acc:d[11],mood:d[12],x:d[13]||{}}));
+
+/* ---------- rendering ---------- */
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const PIP = {1:[[50,50]],2:[[50,12],[50,88]],3:[[50,12],[50,50],[50,88]],4:[[25,12],[75,12],[25,88],[75,88]],5:[[25,12],[75,12],[50,50],[25,88],[75,88]],6:[[25,12],[75,12],[25,50],[75,50],[25,88],[75,88]],7:[[25,12],[75,12],[50,31],[25,50],[75,50],[25,88],[75,88]],8:[[25,12],[75,12],[50,31],[25,50],[75,50],[50,69],[25,88],[75,88]],9:[[25,10],[75,10],[25,37],[75,37],[50,50],[25,63],[75,63],[25,90],[75,90]],10:[[25,10],[75,10],[50,24],[25,37],[75,37],[25,63],[75,63],[50,76],[25,90],[75,90]]};
+const DIE = {1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
+function die(n){let h='<span class="die">';for(let i=0;i<9;i++)h+=`<s class="${DIE[n].includes(i)?'on':''}"></s>`;return h+'</span>'}
+function drawn(sys,n,suit,d){
+  if(sys==='may'){let h='<span class="may">';const dots=n%5,bars=Math.floor(n/5);if(dots){h+='<span class="dots">'+'<span class="d"></span>'.repeat(dots)+'</span>'}h+='<span class="b"></span>'.repeat(bars);return h+'</span>'}
+  if(sys==='tal'){let h='<span class="tal">';let left=n;while(left>0){const g=Math.min(5,left);h+=`<span class="g ${g===5?'f':''}">`+'<span class="l"></span>'.repeat(Math.min(4,g))+'</span>';left-=g}return h+'</span>'}
+  if(sys==='dice'){if(n<=6)return `<span class="dice">${die(n)}</span>`;const a=Math.ceil(n/2),b=n-a;return `<span class="dice two">${die(a)}${die(b)}</span>`}
+  if(sys==='pip'){return `<span class="pips ${n===1?'ace':''}">`+PIP[n].map(([x,y])=>`<span class="${y>55?'dn':''}" style="left:${x}%;top:${y}%">${suit}</span>`).join('')+'</span>'}
+}
+function jcard(d,j){
+  const J=JOKERS[j], txt=J.w;
+  const fs=(.36*(d.x.z||1)).toFixed(3);
+  const style=`--bg:${d.bg};--ink:${d.ink};--red:${d.red};--acc:${d.acc};--f:'${d.font}';${d.x.p?`--p:${d.x.p};`:''}${d.x.a2?`--a2:${d.x.a2};`:''}`;
+  const lyc=d.ly==='g'||d.ly==='t'||d.ly==='s'?'c':d.ly;
+  return `<div class="jc jk ly-${lyc} fr-${d.fr} fx-${d.fx}${j?' r':''}" style="${esc(style)}" role="img" aria-label="${J.n}">`+
+    `<i class="deco"></i><span class="wm" style="--fs:.3">${txt}</span>`+
+    `<span class="ix"><b>${J.c}</b></span><span class="ix ix2"><b>${J.c}</b></span>`+
+    `<span class="hero"><span class="crown">${J.g}︎</span><span class="num" data-t="${txt}" style="--fs:${fs}">${txt}</span></span></div>`;
+}
+function card(d,rank,si){
+  if(rank>=13)return jcard(d,rank-13);
+  const su=SUITS[si], suit=su.s+'︎';
+  const corner=S[d.ix][rank];
+  const isDrawn=S[d.sys]==='draw';
+  const faceOverride=isDrawn&&rank>=10&&(d.sys==='dice'||d.sys==='pip');
+  let hero, txt='';
+  if(isDrawn&&!faceOverride){hero=drawn(d.sys,rank+1,suit,d)}
+  else{
+    txt=faceOverride?S.lat[rank]:S[d.sys][rank];
+    const len=Array.from(txt.replace(/[ً-ٰٟʹ]/g,'')).length;
+    const base=len<=1?.66:Math.min(.6,1.12/len);
+    const fs=(base*(SCALE[faceOverride?'lat':d.sys]||1)*(d.x.z||1)).toFixed(3);
+    hero=`<span class="num" data-t="${esc(txt)}" style="--fs:${fs}">${esc(txt)}</span>`;
+  }
+  const style=`--bg:${d.bg};--ink:${d.ink};--red:${d.red};--acc:${d.acc};--f:'${d.font}';${d.x.fi?`--fi:'${d.x.fi}';`:''}${d.x.iz?`--iz:${d.x.iz};`:''}${d.x.p?`--p:${d.x.p};`:''}${d.x.a2?`--a2:${d.x.a2};`:''}`;
+  const showSt=!isDrawn||d.sys!=='pip';
+  const wm=txt?`<span class="wm" style="--fs:${(Math.min(.66,1.1/Array.from(txt).length)).toFixed(3)}">${esc(txt)}</span>`:'';
+  return `<div class="jc ly-${d.ly} fr-${d.fr} fx-${d.fx}${su.r?' r':''}" style="${esc(style)}" role="img" aria-label="${esc(S.lat[rank]+' '+su.n)}">`+
+    `<i class="deco"></i>${wm}`+
+    `<span class="ix"><b>${esc(corner)}</b><i>${suit}</i></span><span class="ix ix2"><b>${esc(corner)}</b><i>${suit}</i></span>`+
+    `<span class="hero">${hero}${showSt&&!faceOverride&&!(d.sys==='pip')?`<span class="st">${suit}</span>`:''}</span>`+
+    `<span class="bigst">${suit}</span></div>`;
+}
+
+/* fit long numerals inside their frame */
+function fit(root){
+  root.querySelectorAll('.jc:not(.ly-g) .num').forEach(el=>{
+    el.style.removeProperty('--fit');
+    const hero=el.parentElement;
+    const aw=hero.clientWidth*.98, ah=hero.clientHeight*.86;
+    const r=Math.min(1,aw/el.offsetWidth,ah/el.offsetHeight);
+    if(r<1)el.style.setProperty('--fit',r.toFixed(3));
+  });
+}
+
+/* ---------- state ---------- */
+let cat='all', suitIdx=0, open=null, favs=new Set();
+try{favs=new Set(JSON.parse(localStorage.getItem('jj-favs')||'[]'))}catch(e){}
+const saveFavs=()=>{try{localStorage.setItem('jj-favs',JSON.stringify([...favs]))}catch(e){}};
+const pad=n=>String(n).padStart(2,'0');
+const PREV=[[0,0],[6,1],[12,2]]; // A♠ 7♥ K♦ — rotated by chosen suit
+
+function renderChips(){
+  const counts={all:DESIGNS.length,fav:favs.size};
+  for(const k in CATS)counts[k]=DESIGNS.filter(d=>d.cat===k).length;
+  const items=[['all','الكل'],...Object.entries(CATS),['fav','★ مفضلتي']];
+  document.getElementById('chips').innerHTML=items.map(([k,l])=>`<button class="chip" data-cat="${k}" aria-pressed="${cat===k}">${l} <b>${counts[k]}</b></button>`).join('');
+}
+function renderSuits(){
+  document.getElementById('suitpick').innerHTML=SUITS.map((s,i)=>`<button class="${s.r?'r':''}" data-suit="${i}" aria-pressed="${suitIdx===i}" title="${s.n}">${s.s}︎</button>`).join('');
+}
+function renderGrid(){
+  const list=DESIGNS.filter(d=>cat==='all'||(cat==='fav'?favs.has(d.id):d.cat===cat));
+  const g=document.getElementById('grid');
+  g.innerHTML=list.length?list.map(d=>`<article class="tile" tabindex="0" data-id="${d.id}" aria-label="${esc(d.name)}">
+    <button class="fav" data-fav="${d.id}" aria-pressed="${favs.has(d.id)}" aria-label="مفضّل">${favs.has(d.id)?'★':'☆'}</button>
+    <div class="stage">${PREV.map(([r,s])=>card(d,r,(s+suitIdx)%4)).join('')}</div>
+    <div class="meta"><span class="no">${pad(d.id)}</span><div style="flex:1;min-width:0"><h3>${esc(d.name)}</h3><p>${esc(d.mood)}</p></div><span class="tag">${CATS[d.cat]}</span></div>
+  </article>`).join(''):`<div class="empty">ما فيه مفضلات بعد. اضغط النجمة على أي تصميم يعجبك.</div>`;
+  fit(g);
+}
+function renderSheet(){
+  const d=DESIGNS.find(x=>x.id===open); if(!d)return;
+  document.getElementById('sh-no').textContent=pad(d.id);
+  document.getElementById('sh-title').textContent=d.name;
+  document.getElementById('sh-tag').textContent=CATS[d.cat];
+  document.getElementById('sh-fav').textContent=favs.has(d.id)?'★ مفضّل':'☆ أضف للمفضلة';
+  const t=document.getElementById('sh-table');
+  t.innerHTML=Array.from({length:15},(_,r)=>card(d,r,(r+suitIdx)%4)).join('');
+  document.getElementById('sh-spec').innerHTML=[
+    ['نظام الأرقام',SYSNAME[d.sys]],['أرقام الزوايا',SYSNAME[d.ix]],['الخط',d.font+(d.x.fi?' + '+d.x.fi:'')],['المؤثر',FXNAME[d.fx]||d.fx],['الألوان',`${d.ink} · ${d.red} · ${d.acc}`]
+  ].map(([k,v])=>`<div><dt>${k}</dt><dd dir="auto">${esc(v)}</dd></div>`).join('');
+  document.getElementById('sh-desc').textContent=d.mood+'. الأوراق معروضة بالأنواع الأربعة بالتناوب (سبيت، هاص، ديمن، شريها)، وفي الآخر الجيكر والميكر.';
+  fit(t);
+}
+function openSheet(id){open=id;document.getElementById('scrim').hidden=false;renderSheet();document.getElementById('sh-close').focus()}
+function closeSheet(){const id=open;open=null;document.getElementById('scrim').hidden=true;const el=document.querySelector(`.tile[data-id="${id}"]`);el&&el.focus()}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,1800)}
+function toggleFav(id){favs.has(id)?favs.delete(id):favs.add(id);saveFavs();renderChips();renderGrid();if(open)renderSheet()}
+
+document.addEventListener('click',e=>{
+  const c=e.target.closest('[data-cat]'); if(c){cat=c.dataset.cat;renderChips();renderGrid();return}
+  const s=e.target.closest('[data-suit]'); if(s){suitIdx=+s.dataset.suit;renderSuits();renderGrid();if(open)renderSheet();return}
+  const f=e.target.closest('[data-fav]'); if(f){toggleFav(+f.dataset.fav);return}
+  const t=e.target.closest('.tile'); if(t){openSheet(+t.dataset.id);return}
+  if(e.target.id==='scrim'||e.target.id==='sh-close')closeSheet();
+  if(e.target.id==='sh-fav')toggleFav(open);
+  if(e.target.id==='sh-prev'||e.target.id==='sh-next'){const i=DESIGNS.findIndex(x=>x.id===open);const n=(i+(e.target.id==='sh-next'?1:-1)+DESIGNS.length)%DESIGNS.length;open=DESIGNS[n].id;renderSheet()}
+  if(e.target.id==='sh-copy'){
+    const d=DESIGNS.find(x=>x.id===open);
+    const cfg=JSON.stringify({id:d.id,name:d.name,numerals:S[d.sys]==='draw'?d.sys:S[d.sys],corner:S[d.ix],font:d.font,cornerFont:d.x.fi||d.font,effect:d.fx,layout:d.ly,frame:d.fr,background:d.bg,ink:d.ink,red:d.red,accent:d.acc},null,2);
+    const done=()=>toast('تم نسخ إعداد التصميم '+pad(d.id));
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(cfg).then(done,()=>toast('النسخ غير متاح هنا'));else toast('النسخ غير متاح هنا');
+  }
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&open)closeSheet();
+  if(e.key==='Enter'&&e.target.classList&&e.target.classList.contains('tile'))openSheet(+e.target.dataset.id);
+});
+
+document.getElementById('fanhero').innerHTML=[[0,0,55],[6,1,67],[12,2,78],[13,0,1]].map(([r,s,id])=>card(DESIGNS[id-1],r,s)).join('');
+renderChips();renderSuits();renderGrid();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{fit(document);});
+if(document.fonts){let ft;document.fonts.addEventListener('loadingdone',()=>{clearTimeout(ft);ft=setTimeout(()=>fit(document),120)})}
+setTimeout(()=>fit(document),1500);setTimeout(()=>fit(document),5000);
+</script>
+
+</body></html>
