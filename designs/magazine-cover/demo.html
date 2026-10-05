@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تصميم ١٩ · غلاف مجلة</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lalezar&family=Noto+Sans+Symbols+2&family=IBM+Plex+Sans+Arabic:wght@400;700&display=swap">
+<link rel="stylesheet" href="mag-card.css">
+<style>
+body{margin:0;padding:24px 16px;background:#123f6b;color:#f4f7fb;font-family:'IBM Plex Sans Arabic',Tahoma,sans-serif}
+h1{font:400 32px 'Lalezar',sans-serif;margin:0 0 16px;text-align:center}
+.deck{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;max-width:720px;margin:0 auto}
+.deck .mag-card{--w:min(110px,26vw)}
+</style>
+</head>
+<body>
+<h1>تصميم ١٩ · غلاف مجلة</h1>
+<div class="deck" id="deck"></div>
+<script>
+/* magCard(rank, suit)
+   rank: 'A','2'..'10','J','Q','K', or 'JOKER' (الجيكر) / 'MEKER' (الميكر)
+   suit: '♠','♥','♦','♣' (ignored for jokers) */
+function magCard(rank, suit){
+  const el=document.createElement('div');
+  if(rank==='JOKER'||rank==='MEKER'){
+    const big=rank==='JOKER';
+    el.className='mag-card joker'+(big?'':' red');
+    el.setAttribute('aria-label',big?'الجيكر':'الميكر');
+    const c=big?'★':'☆';
+    el.innerHTML=`<span class="ix"><b>${c}</b></span><span class="ix b"><b>${c}</b></span>`+
+      `<span class="hero"><span class="crown">${big?'♛':'♚'}︎</span><span class="word">${big?'جيكر':'ميكر'}</span></span>`;
+    return el;
+  }
+  const red=suit==='♥'||suit==='♦', s=suit+'︎';
+  el.className='mag-card'+(red?' red':'');
+  el.setAttribute('aria-label',rank+' '+suit);
+  el.innerHTML=`<span class="ix"><b>${rank}</b><i>${s}</i></span><span class="ix b"><b>${rank}</b><i>${s}</i></span>`+
+    `<span class="num${rank.length>1?' two':''}">${rank}</span><span class="big-suit">${s}</span>`;
+  return el;
+}
+const deck=document.getElementById('deck'), S=['♠','♥','♦','♣'];
+['A','2','3','4','5','6','7','8','9','10','J','Q','K'].forEach((r,i)=>deck.append(magCard(r,S[i%4])));
+deck.append(magCard('JOKER'),magCard('MEKER'));
+</script>
+</body>
+</html>
