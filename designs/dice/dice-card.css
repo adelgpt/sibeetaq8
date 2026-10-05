@@ -1,0 +1,59 @@
+/* =========================================================
+   Janjafa card design #82 — Dice
+   A..10 are drawn as dice faces (7-10 = two dice), J Q K as letters.
+   Fonts: Fredoka (letters), Noto Sans Symbols 2 (suits),
+          Lalezar (Arabic joker words)
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka&family=Lalezar&family=Noto+Sans+Symbols+2&display=swap">
+   Card size: change --w (height = width x 1.45)
+   ========================================================= */
+.dice-card{
+  --w:90px;
+  --ink:#16181d;   /* black suits */
+  --red:#d8343b;   /* red suits */
+  --k:var(--ink);
+  position:relative;flex:none;overflow:hidden;direction:ltr;user-select:none;
+  width:var(--w);height:calc(var(--w)*1.45);
+  border-radius:calc(var(--w)*.1);
+  background:linear-gradient(165deg,#ffffff,#eceff3);
+  color:var(--k);
+  font-family:'Fredoka','Baloo 2',Arial,sans-serif;
+  box-shadow:0 4px 10px rgba(0,0,0,.35);
+}
+.dice-card.red{--k:var(--red)}
+
+/* corner indexes (top-left + rotated bottom-right) */
+.dice-card .ix{
+  position:absolute;top:4.5%;left:7%;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  line-height:.95;white-space:nowrap;font-size:calc(var(--w)*.19);
+}
+.dice-card .ix i{
+  font-style:normal;margin-top:calc(var(--w)*.02);font-size:calc(var(--w)*.16);
+  font-family:'Noto Sans Symbols 2','Segoe UI Symbol','Apple Symbols',sans-serif;
+}
+.dice-card .ix.b{top:auto;left:auto;right:7%;bottom:4.5%;transform:rotate(180deg)}
+
+/* centre */
+.dice-card .hero{
+  position:absolute;inset:17% 13%;z-index:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--w)*.02);
+}
+.dice-card .num{font-size:calc(var(--w)*.66);line-height:1.05;white-space:nowrap} /* J Q K */
+.dice-card .st{font:calc(var(--w)*.15)/1 'Noto Sans Symbols 2','Segoe UI Symbol','Apple Symbols',sans-serif}
+
+/* dice: a die is a 3x3 grid; <s class="on"> = pip */
+.dice-card .dice{display:flex;flex-direction:column;align-items:center;gap:calc(var(--w)*.05)}
+.dice-card .die{
+  --ds:calc(var(--w)*.36);
+  width:var(--ds);height:var(--ds);box-sizing:border-box;padding:7%;
+  border:calc(var(--w)*.02) solid currentColor;border-radius:22%;
+  display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);
+}
+.dice-card .dice.two .die{--ds:calc(var(--w)*.29)}  /* 7..10 use two dice */
+.dice-card .die s{display:block;margin:auto;width:70%;height:70%;border-radius:50%}
+.dice-card .die s.on{background:currentColor}
+
+/* Jokers: big joker (جيكر) black, small joker (ميكر) red */
+.dice-card.joker .ix{font-family:'Noto Sans Symbols 2','Segoe UI Symbol',sans-serif;font-size:calc(var(--w)*.17)}
+.dice-card.joker .crown{font:calc(var(--w)*.3)/1 'Noto Sans Symbols 2','Segoe UI Symbol',sans-serif}
+.dice-card.joker .word{font-size:calc(var(--w)*.36);line-height:1.05;font-family:'Fredoka','Lalezar',sans-serif}

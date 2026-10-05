@@ -1,0 +1,56 @@
+/* =========================================================
+   Janjafa card design #34 — Night ink
+   Fonts: Gloock (numbers), Noto Sans Symbols 2 (suits),
+          Lalezar (Arabic joker words)
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Lalezar&family=Noto+Sans+Symbols+2&display=swap">
+   Card size: change --w (height = width x 1.45)
+   ========================================================= */
+.ink-card{
+  --w:90px;
+  --ink:#f5f5f5;   /* black suits are printed in white */
+  --red:#ff5a4e;   /* red suits (coral red) */
+  --paper:#0b0b0c; /* card face */
+  --k:var(--ink);
+  position:relative;flex:none;overflow:hidden;direction:ltr;user-select:none;
+  width:var(--w);height:calc(var(--w)*1.45);
+  border-radius:calc(var(--w)*.1);
+  background:var(--paper);color:var(--k);
+  font-family:'Gloock',Georgia,serif;
+  box-shadow:0 4px 10px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.ink-card.red{--k:var(--red)}
+
+/* giant ghost number behind (10% opacity, tilted) */
+.ink-card .wm{
+  position:absolute;left:50%;top:52%;z-index:0;
+  transform:translate(-50%,-50%) rotate(-14deg);
+  font-size:calc(var(--w)*1.39);line-height:1;white-space:nowrap;opacity:.1;
+}
+.ink-card .wm.two{font-size:calc(var(--w)*1.15)}   /* "10" */
+.ink-card.joker .wm{font-size:calc(var(--w)*.63)}  /* joker word */
+
+/* corner indexes (top-left + rotated bottom-right) */
+.ink-card .ix{
+  position:absolute;top:4.5%;left:7%;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  line-height:.95;white-space:nowrap;font-size:calc(var(--w)*.19);
+}
+.ink-card .ix i{
+  font-style:normal;margin-top:calc(var(--w)*.02);font-size:calc(var(--w)*.16);
+  font-family:'Noto Sans Symbols 2','Segoe UI Symbol','Apple Symbols',sans-serif;
+}
+.ink-card .ix.b{top:auto;left:auto;right:7%;bottom:4.5%;transform:rotate(180deg)}
+
+/* centre: number with a small suit under it */
+.ink-card .hero{
+  position:absolute;inset:20% 16%;z-index:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--w)*.02);
+}
+.ink-card .num{font-size:calc(var(--w)*.62);line-height:1.05;white-space:nowrap}
+.ink-card .num.two{font-size:calc(var(--w)*.5)} /* "10" */
+.ink-card .st{font:calc(var(--w)*.15)/1 'Noto Sans Symbols 2','Segoe UI Symbol','Apple Symbols',sans-serif}
+
+/* Jokers: big joker (جيكر) white, small joker (ميكر) red */
+.ink-card.joker .ix{font-family:'Noto Sans Symbols 2','Segoe UI Symbol',sans-serif;font-size:calc(var(--w)*.17)}
+.ink-card.joker .crown{font:calc(var(--w)*.3)/1 'Noto Sans Symbols 2','Segoe UI Symbol',sans-serif}
+.ink-card.joker .word{font-size:calc(var(--w)*.34);line-height:1.05;font-family:'Gloock','Lalezar',serif}

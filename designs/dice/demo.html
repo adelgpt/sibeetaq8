@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تصميم 82 · النرد</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka&family=Lalezar&family=Noto+Sans+Symbols+2&family=IBM+Plex+Sans+Arabic:wght@400;700&display=swap">
+<link rel="stylesheet" href="dice-card.css">
+<style>
+body{margin:0;padding:24px 16px;background:#123f6b;color:#f4f7fb;font-family:'IBM Plex Sans Arabic',Tahoma,sans-serif}
+h1{font:400 32px 'Lalezar',sans-serif;margin:0 0 16px;text-align:center}
+.deck{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;max-width:720px;margin:0 auto}
+.deck .dice-card{--w:min(110px,26vw)}
+</style>
+</head>
+<body>
+<h1>تصميم 82 · النرد</h1>
+<div class="deck" id="deck"></div>
+<script>
+/* makeCard(rank, suit)
+   rank: 'A','2'..'10','J','Q','K', or 'JOKER' (الجيكر) / 'MEKER' (الميكر)
+   suit: '♠','♥','♦','♣' (ignored for jokers) */
+const CLS='dice-card', WATERMARK=false, DICE=true;
+const PIPS={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
+const die=n=>'<span class="die">'+[...Array(9)].map((_,i)=>`<s class="${PIPS[n].includes(i)?'on':''}"></s>`).join('')+'</span>';
+const dice=n=>n<=6?`<span class="dice">${die(n)}</span>`:`<span class="dice two">${die(Math.ceil(n/2))}${die(Math.floor(n/2))}</span>`;
+function makeCard(rank,suit){
+  const el=document.createElement('div');
+  if(rank==='JOKER'||rank==='MEKER'){
+    const big=rank==='JOKER', w=big?'جيكر':'ميكر', c=big?'★':'☆';
+    el.className=CLS+' joker'+(big?'':' red');
+    el.setAttribute('aria-label',big?'الجيكر':'الميكر');
+    el.innerHTML=(WATERMARK?`<span class="wm">${w}</span>`:'')+`<span class="ix"><b>${c}</b></span><span class="ix b"><b>${c}</b></span>`+
+      `<span class="hero"><span class="crown">${big?'♛':'♚'}\uFE0E</span><span class="word">${w}</span></span>`;
+    return el;
+  }
+  const red=suit==='♥'||suit==='♦', s=suit+'\uFE0E', two=rank.length>1?' two':'';
+  const n=['A','2','3','4','5','6','7','8','9','10'].indexOf(rank)+1;
+  let hero;
+  if(DICE&&n>0) hero=dice(n)+`<span class="st">${s}</span>`;
+  else if(DICE) hero=`<span class="num">${rank}</span>`;
+  else hero=`<span class="num${two}">${rank}</span><span class="st">${s}</span>`;
+  el.className=CLS+(red?' red':'');
+  el.setAttribute('aria-label',rank+' '+suit);
+  el.innerHTML=(WATERMARK?`<span class="wm${two}">${rank}</span>`:'')+
+    `<span class="ix"><b>${rank}</b><i>${s}</i></span><span class="ix b"><b>${rank}</b><i>${s}</i></span><span class="hero">${hero}</span>`;
+  return el;
+}
+const deck=document.getElementById('deck'), SU=['♠','♥','♦','♣'];
+['A','2','3','4','5','6','7','8','9','10','J','Q','K'].forEach((r,i)=>deck.append(makeCard(r,SU[i%4])));
+deck.append(makeCard('JOKER'),makeCard('MEKER'));
+</script>
+</body>
+</html>
