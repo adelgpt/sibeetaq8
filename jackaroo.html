@@ -63,7 +63,6 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-o
 #center{position:absolute;left:50%;top:50%;width:17%;transform:translate(-50%,-50%);pointer-events:none}
 #center .cardsvg{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35));animation:land .35s cubic-bezier(.2,1.4,.4,1)}
 #center .who{position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:4px;white-space:nowrap;font-size:11px;font-weight:700;color:var(--ink);background:rgba(255,247,228,.92);border:1px solid var(--gold2);border-radius:20px;padding:1px 8px}
-#center .as{position:absolute;top:-10px;left:-10px;min-width:34px;height:34px;padding:0 6px;border-radius:17px;display:grid;place-items:center;font:400 20px/1 var(--f-display);color:#3a1d00;background:linear-gradient(#ffd27a,#e59a2a);border:2px solid #fff;box-shadow:0 3px 8px rgba(0,0,0,.4)}
 #center .burnt{position:absolute;inset:0;display:grid;place-items:center;font:400 15px var(--f-display);color:#fff;background:rgba(120,20,10,.55);border-radius:8%}
 @keyframes land{from{transform:scale(1.6) rotate(-12deg);opacity:0}}
 #toast{position:absolute;left:50%;top:27%;transform:translate(-50%,-50%);pointer-events:none;font:400 clamp(22px,6vw,38px)/1.1 var(--f-display);color:#fff;text-shadow:0 3px 0 #7a3a10,0 0 18px rgba(0,0,0,.6);white-space:nowrap;opacity:0}
@@ -271,7 +270,6 @@ const homeCount = (st, t) => [t, t + 2].reduce((n, s) => n + st.m[s].filter(p =>
 function newDeck() {
   const d = []; let id = 0;
   for (const s of SUITS) for (const r of RANKS) d.push({r, s, id: id++});
-  d.push({r: 'JK', s: 'B', id: id++}, {r: 'JK', s: 'R', id: id++}); // black & red jokers
   for (let i = d.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [d[i], d[j]] = [d[j], d[i]]; }
   return d;
 }
@@ -334,8 +332,6 @@ function applyMove(st, mv) {
 const cloneM = st => ({m: st.m.map(a => a.slice())});
 
 function legal(st, seat, card) {
-  // a joker plays as any card: every rank's moves, tagged with the rank it stands for
-  if (card.r === 'JK') return RANKS.flatMap(r => legal(st, seat, {r, s: 'S'}).map(m => ({...m, as: r})));
   const c = ctrl(st, seat), out = [], r = card.r, I = [0, 1, 2, 3];
   const F = (s, i, n, king) => { const q = fwd(st, s, i, n, king); if (q) out.push({t: 'move', s, i, n, to: q.to, kills: q.kills}); };
   const exit = () => { const q = exitMove(st, c); if (q) out.push({t: 'exit', s: c, i: q.i, kills: q.kills}); };
@@ -374,7 +370,7 @@ function legal(st, seat, card) {
 const handHasPlay = (st, seat) => st.hands[seat].some(c => legal(st, seat, c).length);
 
 /* ================= AI ================= */
-const KEEP = {JK: 12, A: 9, K: 9, '7': 7, J: 6, '4': 6, '5': 5, '10': 4, Q: 3};
+const KEEP = {A: 9, K: 9, '7': 7, J: 6, '4': 6, '5': 5, '10': 4, Q: 3};
 const keepVal = c => KEEP[c.r] || 2;
 function value(st, t, level) {
   let v = 0;
@@ -438,14 +434,14 @@ const buzz = ms => { try { navigator.vibrate && navigator.vibrate(ms); } catch {
 
 /* ================= cards ================= */
 // classic card faces: public-domain art from vector-playing-cards (Byron Knoll), see cards/LICENSE.txt
-const cardSrc = c => `cards/${c.r}${c.s}.webp`; // jokers: JKB / JKR
+const cardSrc = c => `cards/${c.r}${c.s}.webp`;
 function cardSVG(c) {
   return `<span class="cardsvg pc"><img src="${cardSrc(c)}" alt="" draggable="false"></span>`;
 }
 // warm the cache so dealt cards appear instantly
-function preloadCards() { for (const c of newDeck()) { const i = new Image(); i.src = cardSrc(c); } }
-const CARD_AR = {JK: 'جوكر', A: 'آص', J: 'ولد', Q: 'بنت', K: 'شايب'};
-const SUIT_AR = {B: 'أسود', R: 'أحمر', S: 'سبيت', H: 'هاس', D: 'ديمن', C: 'شريها'};
+function preloadCards() { for (const s of SUITS) for (const r of RANKS) { const i = new Image(); i.src = cardSrc({r, s}); } }
+const CARD_AR = {A: 'آص', J: 'ولد', Q: 'بنت', K: 'شايب'};
+const SUIT_AR = {S: 'سبيت', H: 'هاس', D: 'ديمن', C: 'شريها'};
 const cardName = c => `${CARD_AR[c.r] || c.r} ${SUIT_AR[c.s]}`;
 
 /* ================= board drawing ================= */
@@ -524,7 +520,7 @@ function drawAvatars() {
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.remove('show'); void t.offsetWidth; t.classList.add('show'); }
 function drawCenter() {
   const L = S.last;
-  $('#center').innerHTML = L ? `${cardSVG(L.card)}${L.discard ? '<div class="burnt">محروقة</div>' : ''}${L.as && !L.discard ? `<div class="as">${L.as}</div>` : ''}<div class="who">${esc(S.seats[L.seat].name)}</div>` : '';
+  $('#center').innerHTML = L ? `${cardSVG(L.card)}${L.discard ? '<div class="burnt">محروقة</div>' : ''}<div class="who">${esc(S.seats[L.seat].name)}</div>` : '';
 }
 function drawHud() {
   $('#hUs').textContent = homeCount(S, 0); $('#hThem').textContent = homeCount(S, 1);
@@ -575,18 +571,12 @@ function pickCard(k) {
   }
   U.moves = legal(S, 0, card);
   if (!U.moves.length) { setHint('هذي الورقة ما لها لعب الحين — اختر غيرها'); return; }
-  if (card.r === 'JK') { stageJoker(); return; }
   stageMarble();
 }
 const cancelChip = '<button class="chip ghost" data-act="cancel">إلغاء</button>';
-function stageJoker() {
-  clearMarks(); U.stage = 'joker'; U.all = U.moves;
-  const ranks = RANKS.filter(r => U.moves.some(m => m.as === r));
-  setHint(`<span>الجوكر — يلعب كـ:</span>${ranks.map(r => `<button class="chip" data-act="as" data-r="${r}">${r}</button>`).join('')}${cancelChip}`);
-}
 function stageMarble() {
   clearMarks(); U.stage = 'marble';
-  const card = S.hands[0][U.ci], rank = U.as || card.r, groups = new Map();
+  const card = S.hands[0][U.ci], groups = new Map();
   for (const mv of U.moves) {
     if (mv.t === 'burn') continue;
     if (mv.t === 'exit') { S.m[mv.s].forEach((p, j) => { if (p === -1) addGroup(groups, mv.s, j, {...mv, i: j}); }); continue; }
@@ -599,9 +589,8 @@ function stageMarble() {
     U.cands.push({xy: posOf(s, i, S.m[s][i]), fn: () => chooseMarble(s, i, list)});
   }
   const burn = U.moves.some(m => m.t === 'burn');
-  const tip = {A: 'طلّع كرة أو امشِ ١ / ١١', K: 'طلّع كرة أو امشِ ١٣ (يحرق اللي في طريقه)', J: 'اختر كرتك ثم الكرة اللي تبدّلها', '4': 'رجّع كرة ٤ خطوات', '5': 'حرّك أي كرة ٥ خطوات', '7': 'وزّع ٧ خطوات على كرة أو كرتين', '10': 'امشِ ١٠ أو احرق ورقة من اللاعب اللي بعدك'}[rank] || `امشِ ${rank} خطوات`;
-  const back = U.as ? '<button class="chip ghost" data-act="joker">رجوع</button>' : '';
-  setHint(`<span>${groups.size ? 'اختر الكرة — ' : ''}${tip}</span>${burn ? `<button class="chip red" data-act="burn">احرق ورقة ${esc(S.seats[1].name)}</button>` : ''}${back}${cancelChip}`);
+  const tip = {A: 'طلّع كرة أو امشِ ١ / ١١', K: 'طلّع كرة أو امشِ ١٣ (يحرق اللي في طريقه)', J: 'اختر كرتك ثم الكرة اللي تبدّلها', '4': 'رجّع كرة ٤ خطوات', '5': 'حرّك أي كرة ٥ خطوات', '7': 'وزّع ٧ خطوات على كرة أو كرتين', '10': 'امشِ ١٠ أو احرق ورقة من اللاعب اللي بعدك'}[card.r] || `امشِ ${card.r} خطوات`;
+  setHint(`<span>${groups.size ? 'اختر الكرة — ' : ''}${tip}</span>${burn ? `<button class="chip red" data-act="burn">احرق ورقة ${esc(S.seats[1].name)}</button>` : ''}${cancelChip}`);
 }
 function addGroup(g, s, i, mv) { const k = s + ',' + i; if (!g.has(k)) g.set(k, []); g.get(k).push(mv); }
 
@@ -651,8 +640,7 @@ function chooseDest(d) {
   setHint(`<span>اختر الكرة الثانية تمشي ${7 - d.leg.n}</span>${cancelChip}`);
 }
 function commit(mv) {
-  const ci = U.ci; if (U.as && !mv.as) mv = {...mv, as: U.as};
-  resetSel(); setHint('');
+  const ci = U.ci; resetSel(); setHint('');
   play(0, ci, mv);
 }
 
@@ -670,8 +658,6 @@ $('#hint').addEventListener('click', e => {
   if (a.dataset.act === 'cancel') { resetSel(); drawHand(); humanPrompt(); }
   else if (a.dataset.act === 'burn') commit({t: 'burn'});
   else if (a.dataset.act === 'discard') commit({t: 'discard'});
-  else if (a.dataset.act === 'as') { U.as = a.dataset.r; U.moves = U.all.filter(m => m.as === U.as); stageMarble(); }
-  else if (a.dataset.act === 'joker') { U.as = null; U.moves = U.all; stageJoker(); }
 });
 
 /* ================= turn engine ================= */
@@ -719,11 +705,10 @@ async function play(seat, ci, mv) {
   clearTimeout(timerId); S.timerAt = 0;
   S.busy = true; clearMarks();
   const card = S.hands[seat].splice(ci, 1)[0];
-  S.last = {card, seat, discard: mv.t === 'discard', as: mv.as};
+  S.last = {card, seat, discard: mv.t === 'discard'};
   drawCenter(); drawHand(); drawAvatars(); sfx('card');
   const nm = S.seats[seat].name;
   if (mv.t === 'discard') toast(`${nm} حرق ورقة`);
-  else if (mv.as) toast(`جوكر كـ ${mv.as}`);
   await wait(spd(260));
   await animate(mv, seat);
   if (gen !== S.gen) return;
@@ -835,7 +820,7 @@ function menu() {
 }
 function rules(backTo) {
   sheet(`<h2>طريقة اللعب</h2><div class="rules">
-    <p>أربعة لاعبين في فريقين، وشريكك قدامك. كل لاعب عنده ٤ كرات في القاعدة. الكوتشينة ٥٤ ورقة مع الجوكرين، وتتوزع على ثلاث توزيعات (٥ ثم ٤ ثم ٤) وتبقى ورقتين ما تتوزع. في دورك تلعب ورقة وحدة وتحرّك فيها.</p>
+    <p>أربعة لاعبين في فريقين، وشريكك قدامك. كل لاعب عنده ٤ كرات في القاعدة. توزّع الكوتشينة على ثلاث توزيعات (٥ ثم ٤ ثم ٤). في دورك تلعب ورقة وحدة وتحرّك فيها.</p>
     <h3>الأوراق</h3>
     <table>
       <tr><td>A</td><td>تطلّع كرة من القاعدة، أو تمشي ١ أو ١١</td></tr>
@@ -847,7 +832,6 @@ function rules(backTo) {
       <tr><td>5</td><td>تحرّك أي كرة على اللوح ٥ خطوات (حتى كرات غيرك)</td></tr>
       <tr><td>4</td><td>ترجع كرة ٤ خطوات لورا — حيلة قوية لتقرّب من البيت</td></tr>
       <tr><td>2·3·6·8·9</td><td>تمشي بعدد الورقة</td></tr>
-      <tr><td>🃏</td><td>الجوكر (الأسود والأحمر): يلعب كأي ورقة تختارها</td></tr>
     </table>
     <h3>القواعد</h3>
     <p>• إذا وقفت على كرة غيرك ترجع لقاعدتها.<br>• الكرة الواقفة على بداية صاحبها محمية: ما تنقتل ولا تنبدل ولا أحد يتعداها.<br>• تدخل البيت بالعدد المضبوط وما تقفز على كراتك داخله.<br>• لازم تلعب إذا عندك حركة، وإذا ما عندك أي حركة تحرق ورقة.<br>• إذا خلّصت كراتك تكمّل بكرات شريكك.</p>
