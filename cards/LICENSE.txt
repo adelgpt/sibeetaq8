@@ -2,3 +2,5 @@ Card face artwork: "Vector Playing Cards" by Byron Knoll
 https://code.google.com/archive/p/vector-playing-cards/ — released into the public domain.
 SVG sources via https://github.com/hayeah/playing-cards-assets (MIT License, Copyright (c) 2018 Howard Yeh).
 Rendered to WebP for this site.
+
+joker-color.svg / joker-bw.svg: original vector jester drawings made for this site.
