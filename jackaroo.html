@@ -19,7 +19,7 @@
   --gold:#e9bd62; --gold2:#b98330; --cream:#f7ecd2; --paper:#fff7e4; --ink:#3a2412; --mu:#8a6a48;
   --us:#2f9e57; --them:#d2412f;
   --f-display:'Lalezar',Tahoma,sans-serif; --f-body:'IBM Plex Sans Arabic',Tahoma,sans-serif;
-  --cw:clamp(62px,21vw,104px); /* hand card width; height = width × 1.45 */
+  --cw:clamp(66px,25vw,124px); /* hand card width; height = width × 1.45 */
   color-scheme:dark;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -57,8 +57,8 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-o
 .us{color:var(--us)} .them{color:var(--them)}
 .score .lbl{font-size:10px;text-align:center;color:var(--mu);font-weight:700}
 
-.board-wrap{position:relative;width:min(calc(100vw - 16px),calc(100vh - 330px),760px);aspect-ratio:1;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55))}
-@supports (height:100dvh){.board-wrap{width:min(calc(100vw - 16px),calc(100dvh - 330px),760px)}}
+.board-wrap{position:relative;width:min(calc(100vw - 16px),calc(100vh - 350px),760px);aspect-ratio:1;filter:drop-shadow(0 18px 30px rgba(0,0,0,.55))}
+@supports (height:100dvh){.board-wrap{width:min(calc(100vw - 16px),calc(100dvh - 350px),760px)}}
 #board{width:100%;height:100%;display:block;touch-action:manipulation}
 #center{position:absolute;left:50%;top:50%;width:17%;transform:translate(-50%,-50%);pointer-events:none}
 #center .cardsvg{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35));animation:land .35s cubic-bezier(.2,1.4,.4,1)}
@@ -90,10 +90,11 @@ button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-o
 
 /* hand */
 #hint{min-height:40px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;text-align:center;font-size:14px;font-weight:700;color:#fbe9c4;padding:2px 0 6px}
-#hand{height:calc(var(--cw) * 1.45 + 30px);display:flex;justify-content:center;align-items:flex-end;padding-bottom:4px}
-.card{width:var(--cw);aspect-ratio:100/145;padding:0;border:0;background:none;margin-inline:calc(var(--cw) * -0.13);cursor:pointer;transition:transform .18s,filter .18s;transform-origin:50% 120%;filter:drop-shadow(0 4px 6px rgba(0,0,0,.45));position:relative}
+#hand{height:calc(var(--cw) * 1.45 + 30px);display:flex;direction:ltr;justify-content:center;align-items:flex-end;padding-bottom:4px}
+.card{width:var(--cw);aspect-ratio:100/145;padding:0;border:0;background:none;cursor:pointer;transition:transform .18s,filter .18s;transform-origin:50% 100%;filter:drop-shadow(0 4px 6px rgba(0,0,0,.45));position:relative}
 .pc{display:block;aspect-ratio:100/145;background:#fff;border:1px solid #cfc8b6;border-radius:8%/5.5%;padding:3.2% 3.6%;overflow:hidden}
 .pc img{width:100%;height:100%;display:block;object-fit:contain;pointer-events:none;-webkit-user-drag:none}
+.card + .card{margin-left:calc(var(--cw) * -0.42)} /* fanned hand: each card overlaps the one to its left */
 .card .cardsvg{width:100%;height:100%}
 .card.sel{z-index:3;filter:drop-shadow(0 0 0 var(--gold)) drop-shadow(0 0 8px var(--gold)) drop-shadow(0 6px 8px rgba(0,0,0,.5))}
 .card.dead .cardsvg{filter:brightness(.62) saturate(.6)}
@@ -539,9 +540,9 @@ const myTurn = () => !S.over && !S.busy && S.turn === 0 && !S.seats[0].bot;
 function drawHand(dealt) {
   const h = S.hands[0], mine = myTurn(), anyPlay = mine && handHasPlay(S, 0);
   $('#hand').innerHTML = h.map((c, k) => {
-    const n = h.length, off = k - (n - 1) / 2, ang = off * 7, lift = (off * off - ((n - 1) / 2) ** 2) * 3 + (U.ci === k ? -26 : 0);
+    const n = h.length, off = k - (n - 1) / 2, ang = off * 4.5, lift = (off * off - ((n - 1) / 2) ** 2) * 4 + (U.ci === k ? -28 : 0);
     const dead = mine && anyPlay && !legal(S, 0, c).length;
-    return `<button class="card${U.ci === k ? ' sel' : ''}${dead ? ' dead' : ''}${mine ? '' : ' wait'}${dealt ? ' deal' : ''}" data-k="${k}" style="transform:translateY(${lift}px) rotate(${-ang}deg);animation-delay:${k * 70}ms" aria-label="${cardName(c)}">${cardSVG(c)}</button>`;
+    return `<button class="card${U.ci === k ? ' sel' : ''}${dead ? ' dead' : ''}${mine ? '' : ' wait'}${dealt ? ' deal' : ''}" data-k="${k}" style="transform:translateY(${lift}px) rotate(${ang}deg);animation-delay:${k * 70}ms" aria-label="${cardName(c)}">${cardSVG(c)}</button>`;
   }).join('');
 }
 function setHint(html) { $('#hint').innerHTML = html; }
