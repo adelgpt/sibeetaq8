@@ -911,6 +911,31 @@ html,body{touch-action:manipulation}
 .game .score .gtype .gjk{display:block;font:700 10.5px var(--f-body);font-style:normal;color:#cfd8e3;margin-top:1px}
 .game .score .gtype .gjk.on{color:#ffe08a}
 .game.nz .score{top:calc(42px + var(--sat))}
+
+/* ---------- layout designer (صمّم الطاولة) ---------- */
+.lsheet{width:min(100%,560px);padding:16px 14px 14px;position:relative}
+.ltabs{display:flex;gap:6px;justify-content:center;margin:0 0 10px}
+.ltabs button{flex:0 0 auto;min-width:78px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--tx);border-radius:999px;padding:6px 12px;font:700 13px var(--f-body);cursor:pointer}
+.ltabs button.on{background:var(--amber);color:var(--amber-ink);border-color:transparent}
+.lstage{position:relative;width:100%;border-radius:22px;background:linear-gradient(180deg,#c9ccd1,#8e9197);padding:6px;box-sizing:border-box;container-type:inline-size;touch-action:none;user-select:none}
+.lfelt{position:relative;width:100%;height:100%;border-radius:17px;background:radial-gradient(ellipse at 50% 40%,#5cbf5a 0%,#3f9e3f 60%,#338a35 100%);overflow:hidden}
+.lfelt::before,.lfelt::after{content:'';position:absolute;background:rgba(255,255,255,.12);pointer-events:none}
+.lfelt::before{left:50%;top:0;bottom:0;width:1px}
+.lfelt::after{top:50%;left:0;right:0;height:1px}
+.lcard{position:absolute;transform:translate(-50%,-50%) rotate(var(--rot,0deg));cursor:grab;touch-action:none;z-index:1}
+.lcard.on{z-index:3}
+.lcard:active{cursor:grabbing}
+.lcard .card{--w:calc(100cqw * var(--cr) * var(--k));pointer-events:none}
+.lcard.on .card{box-shadow:0 0 0 3px var(--amber),0 10px 18px rgba(0,0,0,.45)}
+.lcard .ltag{position:absolute;left:50%;top:100%;transform:translate(-50%,4px) rotate(calc(var(--rot,0deg) * -1));white-space:nowrap;font:700 11px var(--f-body);background:rgba(9,24,40,.85);color:#fff;border-radius:8px;padding:1px 7px;pointer-events:none}
+.lcard.on .ltag{background:var(--amber);color:var(--amber-ink)}
+.lhint{color:var(--mu);font-size:12px;text-align:center;margin:8px 0 4px}
+.lctl{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;background:rgba(255,255,255,.05);border-radius:12px;padding:8px 12px;margin-top:8px;font-weight:700;font-size:13px}
+.lctl input[type=range]{width:100%;accent-color:var(--amber)}
+.lctl output{min-width:46px;text-align:center;color:var(--amber);font-family:var(--f-card)}
+.lctl .mini2{border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--tx);border-radius:8px;font:700 11px var(--f-body);padding:4px 8px;cursor:pointer}
+.lbtns{display:flex;gap:8px;margin-top:12px}
+.lbtns .btn{flex:1;font-size:16px;padding:8px 10px 6px}
 </style>
 
 <div id="app" dir="rtl"></div>
@@ -1180,6 +1205,9 @@ function vHome(){
 const LAYOUT={4:['me','R','T','L'],5:['me','R1','R2','L2','L1'],6:['me','R1','R2','T','L2','L1']};
 const POSLBL={me:'أنت',R:'يمينك',R1:'يمينك',R2:'يمين قدام',T:'قدامك',L2:'يسار قدام',L:'يسارك',L1:'يسارك'};
 const SLOTXY={me:[50,76],R:[73,49],T:[50,26],L:[27,49],R1:[75,68],R2:[74,30],L2:[26,30],L1:[25,68]};
+/* custom table layout saved by the player: {N:{s:{pos:{x,y,r}},k:size,hy:hand lift px}} */
+function layAll(){const a=store.get('sbt2_layout',{});return a&&typeof a==='object'?a:{}}
+function layOf(N){const L=layAll()[N]||{};return {s:L.s||{},k:L.k||1,hy:L.hy||0}}
 const DIRN={me:0,R:1,R1:1,R2:1,T:2,L:3,L1:3,L2:3};
 const CHAIRS={4:[[50,86],[88,50],[50,14],[12,50]],5:[[50,88],[88,66],[74,14],[26,14],[12,66]],6:[[50,88],[88,68],[88,30],[50,12],[12,30],[12,68]]};
 const posOf=i=>LAYOUT[G.N][i];
@@ -1248,7 +1276,7 @@ function newGame(){
   SCR='game';MODAL=null;newRound();
 }
 function buildP(){const si=seatInfo();G.P=si.order.map((o,k)=>k?{look:o,n:o.n,lvl:G.lv[o.id]}:{look:meLook(),n:'أنت',lvl:U.lvl})}
-function later(fn,ms){const t=G.token;setTimeout(()=>{if(G&&G.token===t&&SCR==='game')fn()},ms)}
+function later(fn,ms){const t=G.token;const run=()=>{if(G&&G.token===t&&SCR==='game'){if(MODAL==='layout'){setTimeout(run,300);return}fn()}};setTimeout(run,ms)}
 const idx=()=>Array.from({length:G.N},(_,i)=>i);
 function newRound(){
   let d=[];for(const s of 'SHDC')for(let r=2;r<=14;r++)d.push({s,r});
@@ -1720,13 +1748,14 @@ function vGame(){
   const tzW=Wv-2*side, tzH=Hv>Wv?Hv-(av+84)-(hh+140):Hv-(av+58)-(hh+74);
   const asp=phone?.8:1.22;
   const tW=Math.max(140,Math.min((tzW-(phone?16:0))*(phone?.78:.85),phone?440:520,tzH*asp));
-  const tc=Math.max(32,Math.min(104,tW*(G.N>=5?.2:.24)));
+  const LY=layOf(G.N);
+  const tc=Math.max(32,Math.min(104,tW*(G.N>=5?.2:.24)))*LY.k;
   const pile=G.trick.map(t=>{
     const pos=posOf(t.p),dn=DIRN[pos];
     let cls='';
     if(G.ph==='sweep')cls='sw'+DIRN[posOf(G.sweep)];
     else if(t.c===G.justPlayed&&!(U.fx&&G.fly))cls='in'+dn;
-    const [x,y]=SLOTXY[pos],rot=((t.c.r*7+t.p*11)%9)-4;
+    const sp=LY.s[pos],[x,y]=sp?[sp.x,sp.y]:SLOTXY[pos],rot=sp&&sp.r!=null?sp.r:((t.c.r*7+t.p*11)%9)-4;
     return `<div class="slot" data-i="${t.p}" style="left:${x}%;top:${y}%;--rot:${rot}deg">${cardHTML(t.c,cls)}</div>`;
   }).join('');
   const myTurn=G.ph==='play'&&G.cur===0;
@@ -1780,7 +1809,7 @@ function vGame(){
   }
   if(isNZ())bar=nzBar(h);
   const say=G.ph==='play'||G.ph==='wait'?G.say:'';
-  const modal=MODAL==='settings'?vSettings():MODAL==='exit'?vExit():MODAL==='over'?vOver():'';
+  const modal=MODAL==='layout'?vLayout():MODAL==='settings'?vSettings():MODAL==='exit'?vExit():MODAL==='over'?vOver():'';
   const sum=G.ph==='done'&&G.last&&isNZ()?nzSum():G.ph==='done'&&G.last?`<div class="rsum">${G.last.note?`<div class="rnote">${G.last.note}</div>`:''}<div class="rgrid">${idx().map(i=>`<span><i class="mini">${face(G.P[i].look)}</i><b class="${G.last.pts[i]<0?'neg':''}">${G.last.pts[i]<0?'−'+Math.abs(G.last.pts[i]):'+'+G.last.pts[i]}</b></span>`).join('')}</div><small>${G.last.tie?'تعادل، وبتنلعب جولة فاصلة':'الجولة الجاية تبدأ…'}</small></div>`:'';
   return `<div class="game floor ${isNZ()?'nz':''} ${short?'short':''} ${G.ph==='pass'?'passing':''} n${G.N===5?'6 n5':G.N} tb-${tblKey()} bg-${bgKey()}" style="--hc:${hc}px;--ov:${ov}px;--av:${av.toFixed(1)}px;--tzside:${side.toFixed(1)}px;--taspect:${asp};--tW:${tW.toFixed(1)}px;--tcx:${tc.toFixed(1)}px;--vh:${Hv}px;--avme:${(av*.85).toFixed(1)}px">
     <div class="hud"><button class="ibtn exit" data-a="exit" aria-label="خروج من اللعبة" title="خروج">${ICON_EXIT}</button><button class="ibtn" data-a="settings" aria-label="الإعدادات" title="الإعدادات">${ICON_GEAR}</button></div>
@@ -1789,7 +1818,7 @@ function vGame(){
     <div class="tzone"><div class="table"><div class="face"></div><div class="felt"></div><svg class="stitch" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10.5 3.5 H89.5 L97 96.5 H3Z" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="1.2" stroke-dasharray="5 4" vector-effect="non-scaling-stroke"/></svg><div class="skirt"></div>${isNZ()&&G.trump?`<div class="nztb ${G.trump==='H'||G.trump==='D'?'rd':''}"><small>الحكم</small><b>${SY[G.trump]}</b></div>`:''}<div class="pile">${pile}</div>${G.mbreak?`<div class="mbreak"><div class="mbh a"><span class="mini">${face(G.P[G.mbreak.p].look)}</span><b>انكسر الماينس</b><small>${G.mbreak.p?esc(G.P[G.mbreak.p].n):'أنت'} +20</small></div><div class="mbh b" aria-hidden="true"><span class="mini">${face(G.P[G.mbreak.p].look)}</span><b>انكسر الماينس</b><small>${G.mbreak.p?esc(G.P[G.mbreak.p].n):'أنت'} +20</small></div></div>`:''}${false?`<div class="giftc"><div class="gh"><span class="mini">${face(G.P[G.gift.from].look)}</span>وصلتك من ${esc(G.P[G.gift.from].n)}</div><div class="gc">${G.gift.cards.map(c=>cardHTML(c,'')).join('')}</div></div>`:''}${sum||(say?`<div class="say">${esc(say)}</div>`:'')}</div></div>
     ${vSeat(0)}
     ${bar}
-    <div class="hand">${hand}</div>
+    <div class="hand"${LY.hy?` style="transform:translateY(${-LY.hy}px)"`:''}>${hand}</div>
     ${modal}
   </div>`;
 }
@@ -1799,6 +1828,7 @@ function vSettings(){
     <h3>الإعدادات</h3><p class="sub">تنحفظ لكل مبارياتك</p>
     ${tg('snd','صوت رمي الورق','صوت ورق ناعم لما ترمي الورقة')}
     ${tg('fx','حركة الورق 3D','الورقة تطير وتلف لين توصل الطاولة')}
+    <button class="btn ghost wide" style="margin-top:6px" data-a="lay">✎ صمّم مكان الأوراق على الطاولة</button>
     <button class="btn wide" style="margin-top:14px" data-a="close">أغلق</button>
   </div></div>`;
 }
@@ -2235,6 +2265,8 @@ function act(a,v,el){
     case 'friends':MODAL='friends';render();break;
     case 'copylink':{const t=siteLink();try{navigator.clipboard.writeText(t).then(()=>{el.textContent='تم النسخ'},()=>{})}catch(e){}break}
     case 'settings':MODAL='settings';render();break;
+    case 'lay':if(G){MODAL=null;render();openLayout()}break;
+    case 'layn':case 'layrot':case 'layreset':case 'laycancel':case 'laysave':layAct(a,v);break;
     case 'toggle':U[v]=!U[v];saveUser();if(v==='snd'&&U.snd)slap();render();break;
     case 'card':{
       if(MODAL)return;
@@ -2267,6 +2299,76 @@ function act(a,v,el){
     case 'home':clearGame();G.token=0;G=null;SCR='home';MODAL=null;render();break;
   }
 }
+
+/* ---- layout designer window: drag each seat's card, rotate it, resize all cards ---- */
+let ED=null;
+const ED_SAMPLE={me:{s:'H',r:10},R:{s:'H',r:13},R1:{s:'H',r:13},R2:{s:'D',r:14},T:{s:'D',r:14},L2:{s:'H',r:12},L:{s:'H',r:12},L1:{s:'H',r:8}};
+function openLayout(){
+  const pile=app.querySelector('.pile'),gm=app.querySelector('.game');
+  const r=pile?pile.getBoundingClientRect():{width:400,height:300};
+  const tc=gm?parseFloat(gm.style.getPropertyValue('--tcx'))||80:80;
+  const all=layAll(),d={};
+  for(const n of [4,5,6]){const L=layOf(n);d[n]={s:JSON.parse(JSON.stringify(L.s)),k:L.k,hy:L.hy}}
+  ED={N:G.N,d,sel:'me',asp:Math.max(.6,Math.min(2.4,r.width/Math.max(1,r.height))),cr:(tc/layOf(G.N).k)/Math.max(1,r.width)};
+  MODAL='layout';render();
+}
+const edL=()=>ED.d[ED.N];
+const edCr=()=>ED.cr*(ED.N>=5?.2:.24)/(G.N>=5?.2:.24);
+function edPos(p){const s=edL().s[p];return s?{x:s.x,y:s.y,r:s.r}:{x:SLOTXY[p][0],y:SLOTXY[p][1],r:null}}
+function vLayout(){
+  const L=edL(),seats=LAYOUT[ED.N],sel=seats.includes(ED.sel)?ED.sel:'me';ED.sel=sel;
+  const cards=seats.map(p=>{const q=edPos(p);return `<div class="lcard ${p===sel?'on':''}" data-lp="${p}" style="left:${q.x}%;top:${q.y}%;--rot:${q.r||0}deg">${cardHTML(ED_SAMPLE[p],'')}<span class="ltag">${POSLBL[p]}</span></div>`}).join('');
+  const sr=edPos(sel).r;
+  return `<div class="scrim"><div class="sheet lsheet" role="dialog" aria-label="صمّم الطاولة"><button class="xbtn" data-a="laycancel" aria-label="إغلاق">✕</button>
+    <h3>صمّم الطاولة</h3><p class="sub">اسحب أي ورقة للمكان اللي يعجبك، واضغط عليها عشان تلفها</p>
+    <div class="ltabs">${[4,5,6].map(n=>`<button class="${ED.N===n?'on':''}" data-a="layn" data-v="${n}">${n} لاعبين</button>`).join('')}</div>
+    <div class="lstage" style="aspect-ratio:${ED.asp.toFixed(3)};--cr:${edCr().toFixed(4)};--k:${L.k}"><div class="lfelt">${cards}</div></div>
+    <p class="lhint">الورقة المختارة: <b>${POSLBL[sel]}</b></p>
+    <label class="lctl"><span>لفّ الورقة</span><input type="range" min="-180" max="180" step="1" value="${sr||0}" data-lin="rot"><output id="lo-rot">${sr==null?'عشوائي':sr+'°'}</output></label>
+    <div class="lctl"><span>دوران</span><span style="display:flex;gap:6px;flex-wrap:wrap"><button class="mini2" data-a="layrot" data-v="0">مستقيم</button><button class="mini2" data-a="layrot" data-v="90">عرضي</button><button class="mini2" data-a="layrot" data-v="rnd">عشوائي</button></span><span></span></div>
+    <label class="lctl"><span>حجم الورق</span><input type="range" min="60" max="160" step="5" value="${Math.round(L.k*100)}" data-lin="k"><output id="lo-k">${Math.round(L.k*100)}%</output></label>
+    <label class="lctl"><span>ارفع ورقك</span><input type="range" min="0" max="160" step="2" value="${L.hy}" data-lin="hy"><output id="lo-hy">${L.hy}px</output></label>
+    <div class="lbtns"><button class="btn ghost" data-a="layreset">الأصل</button><button class="btn ghost" data-a="laycancel">إلغاء</button><button class="btn" data-a="laysave">حفظ</button></div>
+  </div></div>`;
+}
+function layAct(a,v){
+  if(!ED)return;
+  const L=edL();
+  if(a==='layn'){ED.N=+v;render()}
+  else if(a==='layrot'){const q=edPos(ED.sel);L.s[ED.sel]={x:q.x,y:q.y,r:v==='rnd'?null:+v};render()}
+  else if(a==='layreset'){ED.d[ED.N]={s:{},k:1,hy:0};render()}
+  else if(a==='laycancel'){ED=null;MODAL=null;render()}
+  else if(a==='laysave'){const all=layAll();for(const n of [4,5,6])all[n]=ED.d[n];store.set('sbt2_layout',all);ED=null;MODAL=null;render()}
+}
+app.addEventListener('input',e=>{
+  const t=e.target;if(!ED||!t.dataset||!t.dataset.lin)return;
+  const L=edL(),v=+t.value,k=t.dataset.lin;
+  if(k==='rot'){const q=edPos(ED.sel);L.s[ED.sel]={x:q.x,y:q.y,r:v};const el=app.querySelector(`.lcard[data-lp="${ED.sel}"]`);if(el)el.style.setProperty('--rot',v+'deg');document.getElementById('lo-rot').textContent=v+'°'}
+  else if(k==='k'){L.k=v/100;const st=app.querySelector('.lstage');if(st)st.style.setProperty('--k',L.k);document.getElementById('lo-k').textContent=v+'%'}
+  else if(k==='hy'){L.hy=v;document.getElementById('lo-hy').textContent=v+'px'}
+});
+let LDRAG=null;
+app.addEventListener('pointerdown',e=>{
+  if(!ED||MODAL!=='layout')return;
+  const el=e.target.closest('.lcard');if(!el||e.button>0)return;
+  e.preventDefault();
+  const p=el.dataset.lp,felt=el.parentElement.getBoundingClientRect(),q=edPos(p);
+  LDRAG={p,el,felt,id:e.pointerId,sx:e.clientX,sy:e.clientY,x0:q.x,y0:q.y,moved:false};
+  app.querySelectorAll('.lcard.on').forEach(c=>c.classList.remove('on'));el.classList.add('on');
+  try{el.setPointerCapture(e.pointerId)}catch(_){}
+});
+app.addEventListener('pointermove',e=>{
+  const D=LDRAG;if(!D||e.pointerId!==D.id)return;
+  const dx=(e.clientX-D.sx)/D.felt.width*100,dy=(e.clientY-D.sy)/D.felt.height*100;
+  if(!D.moved&&Math.hypot(e.clientX-D.sx,e.clientY-D.sy)<3)return;
+  D.moved=true;
+  const x=Math.max(0,Math.min(100,D.x0+dx)),y=Math.max(0,Math.min(100,D.y0+dy));
+  D.el.style.left=x+'%';D.el.style.top=y+'%';
+  const q=edPos(D.p);edL().s[D.p]={x:+x.toFixed(1),y:+y.toFixed(1),r:q.r};
+});
+function endLDrag(e){const D=LDRAG;if(!D||e.pointerId!==D.id)return;LDRAG=null;ED.sel=D.p;render()}
+app.addEventListener('pointerup',endLDrag);
+app.addEventListener('pointercancel',endLDrag);
 let event=null;
 /* ---- drag a card to the table (3D tilt) ---- */
 let DRAG=null,DRAG_FROM=null,DRAG_SUPPRESS=false;
@@ -2335,7 +2437,7 @@ app.addEventListener('click',e=>{
 });
 app.addEventListener('keydown',e=>{
   if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.a==='card'){e.preventDefault();act('card',e.target.dataset.v,e.target)}
-  if(e.key==='Escape'&&MODAL&&MODAL!=='round'&&MODAL!=='over'){MODAL=null;render()}
+  if(e.key==='Escape'&&MODAL&&MODAL!=='round'&&MODAL!=='over'){ED=null;MODAL=null;render()}
 });
 let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{if(SCR==='game')render()},120)});
 
