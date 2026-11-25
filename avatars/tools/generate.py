@@ -397,7 +397,7 @@ def hair_back(c, uid):
     kind = c.get("hair")
     col = c.get("hair_color", "#2a1d16")
     if kind == "long":
-        return P("M256,96 C380,96 404,200 400,300 C398,380 420,440 440,470 C380,490 320,470 300,440 L212,440 C192,470 132,490 72,470 C92,440 114,380 112,300 C108,200 132,96 256,96 Z", col)
+        return P("M256,96 C380,96 404,200 400,300 C398,370 412,410 424,436 C380,452 330,440 300,420 L212,420 C182,440 132,452 88,436 C100,410 114,370 112,300 C108,200 132,96 256,96 Z", col)
     if kind == "afro":
         return P("M256,62 C340,52 410,100 418,170 C440,210 420,270 392,300 L120,300 C92,270 72,210 94,170 C102,100 172,52 256,62 Z", col)
     if kind == "bun":
@@ -454,15 +454,15 @@ def headwear(c, uid, layer):
     if kind in ("shemagh", "ghutra"):
         fill = f"url(#shm{uid})" if kind == "shemagh" else "#ffffff"
         if layer == "back":
-            d = "M256,84 C366,84 404,170 406,262 L420,474 C388,488 330,478 306,452 L206,452 C182,478 124,488 92,474 L106,262 C108,170 146,84 256,84 Z"
+            d = "M256,84 C366,84 404,170 406,262 L410,392 C392,430 330,446 256,446 C182,446 120,430 102,392 L106,262 C108,170 146,84 256,84 Z"
             out = [P(d, fill)]
             out.append(line("M130,320 C126,380 120,430 112,470", "#000", 4, 'opacity="0.12"'))
             out.append(line("M382,320 C386,380 392,430 400,470", "#000", 4, 'opacity="0.12"'))
             return "".join(out)
         if layer == "front":
-            d = ("M104,470 L112,300 C108,170 168,94 256,92 C344,94 404,170 400,300 L408,470 "
-                 "C394,476 380,474 370,468 C368,420 362,360 362,300 C366,244 348,186 300,172 Q256,186 212,172 "
-                 "C164,186 146,244 150,300 C150,360 144,420 142,468 C132,474 118,476 104,470 Z")
+            d = ("M104,396 L112,300 C108,170 168,94 256,92 C344,94 404,170 400,300 L408,396 "
+                 "C394,410 380,410 368,402 C366,370 362,334 362,300 C366,244 348,186 300,172 Q256,186 212,172 "
+                 "C164,186 146,244 150,300 C150,334 146,370 144,402 C132,410 118,410 104,396 Z")
             out = [P(d, fill)]
             out.append(line("M212,172 Q256,196 300,172", "#000", 4, 'opacity="0.15"'))
             out.append(line("M170,140 C200,128 230,124 256,124", "#000", 3, 'opacity="0.12"'))
@@ -483,7 +483,7 @@ def headwear(c, uid, layer):
     if kind in ("hijab", "niqab"):
         col = c.get("scarf_color", "#1c1c22")
         if layer == "back":
-            return P("M256,82 C376,82 410,190 412,300 C414,380 440,440 460,520 L52,520 C72,440 98,380 100,300 C102,190 136,82 256,82 Z", col)
+            return P("M256,82 C376,82 410,190 412,300 C414,390 370,460 256,468 C142,460 98,390 100,300 C102,190 136,82 256,82 Z", col)
         if layer == "front":
             d = ("M256,80 C372,80 404,180 404,290 C404,384 360,446 256,456 C152,446 108,384 108,290 C108,180 140,80 256,80 Z "
                  "M256,142 C322,142 350,190 350,256 C350,332 314,384 256,388 C198,384 162,332 162,256 C162,190 190,142 256,142 Z")
@@ -534,12 +534,11 @@ def avatar(c, uid, with_bg=True):
     parts = [defs(c, uid)]
     if with_bg:
         parts.append(background(c, uid))
+    parts.append('<g transform="translate(256 262) scale(1.12) translate(-256 -270)">')
     parts.append(hair_back(c, uid))
     parts.append(headwear(c, uid, "back") if c.get("head") in ("hijab", "niqab") else "")
-    parts.append(body(c, uid))
     if c.get("head") in ("shemagh", "ghutra"):
         parts.append(headwear(c, uid, "back"))
-    parts.append(neck(c, uid))
     if c.get("head") not in ("shemagh", "ghutra", "hijab", "niqab"):
         parts.append(ears(c, uid))
     parts.append(face(c, uid))
@@ -553,6 +552,7 @@ def avatar(c, uid, with_bg=True):
     parts.append(hair_front(c, uid))
     parts.append(headwear(c, uid, "front"))
     parts.append(glasses(c, uid))
+    parts.append('</g>')
     clip = f'<clipPath id="card{uid}"><rect x="8" y="8" width="496" height="496" rx="64"/></clipPath>'
     inner = "".join(parts)
     if with_bg:
